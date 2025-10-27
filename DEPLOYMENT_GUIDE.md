@@ -12,10 +12,18 @@ This guide will help you deploy the "10 Minutes of Nothing" PWA to Cloudflare Pa
 
 ### 1.1 Add Domain to Cloudflare
 1. Log into [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. Click "Add a Site"
+2. **Найдите кнопку добавления сайта** (может быть в разных местах):
+   - В правом верхнем углу: "Add a Site" / "Add Site"
+   - На главной странице: большая кнопка "Add a Site"
+   - В левом меню: "Sites" → "Add Site"
+   - На дашборде: "Get started" / "Connect a Site"
 3. Enter `nothing10.com`
 4. Choose "Free" plan
 5. Cloudflare will scan your DNS records
+
+**Если не можете найти кнопку:**
+- Попробуйте перейти напрямую: `https://dash.cloudflare.com/add-site`
+- Или найдите в меню "Sites" → "Add Site"
 
 ### 1.2 Update Nameservers
 1. Go to your domain registrar (where you bought nothing10.com)
@@ -27,11 +35,17 @@ This guide will help you deploy the "10 Minutes of Nothing" PWA to Cloudflare Pa
 ## Step 2: Deploy to Cloudflare Pages
 
 ### 2.1 Connect Repository
-1. In Cloudflare Dashboard, go to **Pages**
-2. Click "Create a project"
-3. Choose "Connect to Git"
+1. In Cloudflare Dashboard, go to **Pages** (в левом меню)
+2. Click "Create a project" или "Create project"
+3. Choose "Connect to Git" или "Connect Git repository"
 4. Select GitHub and authorize Cloudflare
 5. Choose repository: `Olleala2023/nothing10`
+
+**Альтернативные варианты:**
+- "Create project"
+- "New project" 
+- "Deploy a site"
+- "Get started"
 
 ### 2.2 Configure Build Settings
 ```
