@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How to set up contact@nothing10.com email - Email Setup Guide" />
+    <meta name="theme-color" content="#000000" />
+    <title>Email Setup Guide - 10 Minutes of Nothing</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #000000;
+        color: #ffffff;
+        line-height: 1.6;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      
+      h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 300;
+        margin-bottom: 1rem;
+      }
+      
+      .back-btn {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        border: 2px solid #ffffff;
+        background: transparent;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        margin-bottom: 2rem;
+      }
+      
+      .back-btn:hover {
+        background: #ffffff;
+        color: #000000;
+      }
+      
+      .content {
+        margin-bottom: 3rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 2rem 0 1rem 0;
+        color: #ffffff;
+      }
+      
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin: 1.5rem 0 0.8rem 0;
+        color: #ffffff;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        opacity: 0.9;
+      }
+      
+      ul {
+        margin: 1rem 0 1rem 2rem;
+        opacity: 0.9;
+      }
+      
+      li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .highlight {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+      
+      .highlight p {
+        margin-bottom: 0.5rem;
+      }
+      
+      .highlight p:last-child {
+        margin-bottom: 0;
+      }
+      
+      .method {
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+      
+      .method h3 {
+        margin-top: 0;
+        color: #ffffff;
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .steps {
+        list-style: none;
+        counter-reset: step-counter;
+      }
+      
+      .steps li {
+        counter-increment: step-counter;
+        margin-bottom: 1rem;
+        padding-left: 2.5rem;
+        position: relative;
+      }
+      
+      .steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: #ffffff;
+        color: #000000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+      
+      .code {
+        background: #222;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 0.5rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+        display: inline-block;
+      }
+      
+      .note {
+        background: #2a1a00;
+        border-left: 4px solid #ff6b00;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0 8px 8px 0;
+      }
+      
+      .note p {
+        margin-bottom: 0.5rem;
+      }
+      
+      .note p:last-child {
+        margin-bottom: 0;
+      }
+      
+      .footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #333;
+      }
+      
+      .footer a {
+        color: #ffffff;
+        text-decoration: none;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+      
+      .footer a:hover {
+        opacity: 1;
+      }
+      
+      @media (max-width: 480px) {
+        body {
+          padding: 1rem;
+        }
+        
+        .method,
+        .highlight,
+        .note {
+          padding: 1rem;
+        }
+        
+        .steps li {
+          padding-left: 2rem;
+        }
+        
+        .steps li::before {
+          width: 1.2rem;
+          height: 1.2rem;
+          font-size: 0.7rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Email Setup Guide</h1>
+      <a href="/" class="back-btn">← Back to App</a>
+    </div>
+
+    <div class="content">
+      <p><strong>Last updated:</strong> October 28, 2024</p>
+      
+      <div class="highlight">
+        <p><strong>Goal:</strong> Set up <code class="code">contact@nothing10.com</code> email address to receive user feedback and inquiries.</p>
+        <p>This guide covers the most common and cost-effective methods for setting up email on your domain.</p>
+      </div>
+
+      <h2>Why This Matters</h2>
+      <p>Having a professional email address like <code class="code">contact@nothing10.com</code> helps build trust with users and provides a way for them to reach out with questions, feedback, or support requests.</p>
+
+      <div class="method">
+        <h3>Method 1: Cloudflare Email Routing (Recommended)</h3>
+        <p><strong>Cost:</strong> Free | <strong>Difficulty:</strong> Easy | <strong>Setup Time:</strong> 5-10 minutes</p>
+        
+        <ol class="steps">
+          <li>
+            <strong>Log into Cloudflare Dashboard</strong>
+            <br>Go to your Cloudflare account and select the nothing10.com domain
+          </li>
+          <li>
+            <strong>Enable Email Routing</strong>
+            <br>Go to Email → Email Routing → Get Started
+          </li>
+          <li>
+            <strong>Add DNS Records</strong>
+            <br>Cloudflare will automatically add the required MX and TXT records
+          </li>
+          <li>
+            <strong>Create Email Address</strong>
+            <br>Go to Email → Email Routing → Email Addresses → Create Address
+            <br>Enter: <code class="code">contact</code> as the local part
+          </li>
+          <li>
+            <strong>Set Destination</strong>
+            <br>Enter your personal email address (Gmail, Outlook, etc.) as the destination
+          </li>
+          <li>
+            <strong>Verify Setup</strong>
+            <br>Send a test email to contact@nothing10.com to verify it works
+          </li>
+        </ol>
+        
+        <div class="note">
+          <p><strong>💡 Pro Tip:</strong> You can create multiple email addresses (support@, hello@, etc.) and forward them all to the same personal inbox.</p>
+        </div>
+      </div>
+
+      <div class="method">
+        <h3>Method 2: Gmail with Custom Domain</h3>
+        <p><strong>Cost:</strong> $6/month per user | <strong>Difficulty:</strong> Medium | <strong>Setup Time:</strong> 15-30 minutes</p>
+        
+        <ol class="steps">
+          <li>
+            <strong>Sign up for Google Workspace</strong>
+            <br>Go to workspace.google.com and start a free trial
+          </li>
+          <li>
+            <strong>Verify Domain Ownership</strong>
+            <br>Add the required TXT record to your domain's DNS
+          </li>
+          <li>
+            <strong>Set up Email</strong>
+            <br>Create a user account with the email address contact@nothing10.com
+          </li>
+          <li>
+            <strong>Configure DNS</strong>
+            <br>Update your domain's MX records to point to Google's servers
+          </li>
+          <li>
+            <strong>Test Email</strong>
+            <br>Send a test email to verify everything works
+          </li>
+        </ol>
+      </div>
+
+      <div class="method">
+        <h3>Method 3: Zoho Mail (Free Tier)</h3>
+        <p><strong>Cost:</strong> Free for up to 5 users | <strong>Difficulty:</strong> Medium | <strong>Setup Time:</strong> 10-20 minutes</p>
+        
+        <ol class="steps">
+          <li>
+            <strong>Sign up for Zoho Mail</strong>
+            <br>Go to mail.zoho.com and create a free account
+          </li>
+          <li>
+            <strong>Add Your Domain</strong>
+            <br>Go to Control Panel → Domains → Add Domain
+          </li>
+          <li>
+            <strong>Verify Domain</strong>
+            <br>Add the required TXT record to verify domain ownership
+          </li>
+          <li>
+            <strong>Configure DNS</strong>
+            <br>Update MX records to point to Zoho's servers
+          </li>
+          <li>
+            <strong>Create Email Account</strong>
+            <br>Create contact@nothing10.com user account
+          </li>
+        </ol>
+      </div>
+
+      <div class="method">
+        <h3>Method 4: Simple Email Forwarding</h3>
+        <p><strong>Cost:</strong> $1-5/month | <strong>Difficulty:</strong> Easy | <strong>Setup Time:</strong> 5-15 minutes</p>
+        
+        <ol class="steps">
+          <li>
+            <strong>Choose Email Provider</strong>
+            <br>Popular options: Namecheap, GoDaddy, Porkbun, or your domain registrar
+          </li>
+          <li>
+            <strong>Enable Email Forwarding</strong>
+            <br>Most registrars offer email forwarding as an add-on service
+          </li>
+          <li>
+            <strong>Set up Forwarding</strong>
+            <br>Forward contact@nothing10.com to your personal email
+          </li>
+          <li>
+            <strong>Configure DNS</strong>
+            <br>Add MX records if required by your provider
+          </li>
+        </ol>
+      </div>
+
+      <h2>DNS Records You'll Need</h2>
+      <p>Depending on your chosen method, you may need to add these DNS records:</p>
+      
+      <h3>MX Records (Mail Exchange)</h3>
+      <ul>
+        <li><strong>Cloudflare:</strong> Usually auto-configured</li>
+        <li><strong>Gmail:</strong> <code class="code">ASPMX.L.GOOGLE.COM</code> (priority 1)</li>
+        <li><strong>Zoho:</strong> <code class="code">mx.zoho.com</code> (priority 10)</li>
+      </ul>
+
+      <h3>TXT Records (Domain Verification)</h3>
+      <ul>
+        <li><strong>Google:</strong> <code class="code">google-site-verification=...</code></li>
+        <li><strong>Zoho:</strong> <code class="code">zoho-verification=...</code></li>
+        <li><strong>Cloudflare:</strong> Usually auto-configured</li>
+      </ul>
+
+      <h2>Testing Your Setup</h2>
+      <p>Once configured, test your email setup:</p>
+      <ol>
+        <li>Send a test email from your personal email to contact@nothing10.com</li>
+        <li>Check that it arrives in your destination inbox</li>
+        <li>Reply to the email to test the reverse direction</li>
+        <li>Test from different email providers (Gmail, Outlook, etc.)</li>
+      </ol>
+
+      <h2>Best Practices</h2>
+      <ul>
+        <li><strong>Use a professional email client</strong> to manage your business email</li>
+        <li><strong>Set up email filters</strong> to organize incoming messages</li>
+        <li><strong>Create an auto-reply</strong> for common inquiries</li>
+        <li><strong>Monitor spam folders</strong> for legitimate emails</li>
+        <li><strong>Consider multiple addresses</strong> (support@, hello@, etc.) for different purposes</li>
+      </ul>
+
+      <div class="note">
+        <p><strong>⚠️ Important:</strong> Keep your email credentials secure and consider using two-factor authentication for your email accounts.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>
+        <a href="/">Back to 10 Minutes of Nothing</a> | 
+        <a href="/legal/privacy.html">Privacy Policy</a> | 
+        <a href="/legal/terms.html">Terms of Service</a>
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="10 Minutes of Nothing - A pause ritual" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="/app/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon-192.png" />
+    <title>10 Minutes of Nothing</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Welcome Screen -->
+      <div id="welcome-screen" class="screen active">
+        <div class="phrase-container">
+          <p id="phrase" class="phrase"></p>
+        </div>
+        <div class="duration-selector">
+          <h2>Choose Duration</h2>
+          <div class="duration-buttons">
+            <button class="duration-btn" data-duration="3">3 min</button>
+            <button class="duration-btn" data-duration="5">5 min</button>
+            <button class="duration-btn active" data-duration="10">10 min</button>
+            <button class="duration-btn" data-duration="custom">Custom</button>
+          </div>
+          <div id="custom-duration" class="custom-duration hidden">
+            <input type="number" id="custom-minutes" placeholder="Minutes" min="1" max="60" />
+            <button id="set-custom">Set</button>
+          </div>
+        </div>
+        <div class="display-mode-selector">
+          <h3>Display Mode</h3>
+          <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="hidden">Hidden</button>
+            <button class="mode-btn" data-mode="ghost">Ghost</button>
+            <button class="mode-btn" data-mode="dot">Breathing</button>
+          </div>
+          <div class="mode-descriptions">
+            <div class="mode-desc" data-mode="hidden">
+              <strong>Hidden:</strong> Complete black screen with only your phrase visible
+            </div>
+            <div class="mode-desc" data-mode="ghost">
+              <strong>Ghost:</strong> Dim timer display for time awareness
+            </div>
+            <div class="mode-desc" data-mode="dot">
+              <strong>Breathing:</strong> Guided breathing dot at 6 breaths per minute
+            </div>
+          </div>
+        </div>
+        <button id="start-btn" class="start-btn">Start 10 Minutes</button>
+        <button id="fullscreen-btn" class="fullscreen-btn">Enter Fullscreen</button>
+      </div>
+
+      <!-- Timer Screen -->
+      <div id="timer-screen" class="screen">
+        <div id="timer-display" class="timer-display hidden">
+          <span id="minutes">10</span>:<span id="seconds">00</span>
+        </div>
+        <div id="dot-display" class="dot-display hidden">
+          <div class="dot"></div>
+        </div>
+        <div id="touch-hint" class="touch-hint hidden">
+          Touch = restart
+        </div>
+      </div>
+
+      <!-- Completion Screen -->
+      <div id="completion-screen" class="screen">
+        <div class="completion-content">
+          <h2>Pause complete.</h2>
+          <p>Do one small thing.</p>
+          <div class="completion-buttons">
+            <button id="another-btn" class="btn">Another 10 Minutes</button>
+            <button id="exit-btn" class="btn">Exit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Button -->
+      <button id="stats-btn" class="stats-btn">ℹ️</button>
+      
+      <!-- Stats Modal -->
+      <div id="stats-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3>Your Progress</h3>
+          <div class="stats-grid">
+            <div class="stat">
+              <span class="stat-value" id="completed-sessions">0</span>
+              <span class="stat-label">Sessions</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="total-minutes">0</span>
+              <span class="stat-label">Minutes this week</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="streak-days">0</span>
+              <span class="stat-label">Day streak</span>
+            </div>
+          </div>
+          <button id="close-stats" class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
