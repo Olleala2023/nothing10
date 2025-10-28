@@ -41,15 +41,57 @@
         background: transparent;
         color: #ffffff;
         text-decoration: none;
-        border-radius: 8px;
-        font-size: 1rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
         transition: all 0.3s ease;
         margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .back-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .back-btn:hover::before {
+        left: 100%;
       }
       
       .back-btn:hover {
-        background: #ffffff;
-        color: #000000;
+        background: transparent;
+        color: #ffffff;
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      @keyframes borderGlow {
+        0%, 100% {
+          border-color: #ffffff;
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        25% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+        50% {
+          border-color: #7b68ee;
+          box-shadow: 0 0 20px rgba(123, 104, 238, 0.6);
+        }
+        75% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+      }
+      
+      .accent-text {
+        color: #2563eb;
+        font-weight: 500;
       }
       
       .content {
@@ -159,36 +201,36 @@
       <p><strong>Last updated:</strong> October 28, 2024</p>
       
       <div class="highlight">
-        <p><strong>TL;DR:</strong> We don't collect your data. Everything stays on your device. No tracking. No accounts. Just you and your 10 minutes of nothing.</p>
+        <p><strong>TL;DR:</strong> We don't collect your <span class="accent-text">data</span>. Everything stays on your <span class="accent-text">device</span>. No tracking. No accounts. Just you and your pause.</p>
       </div>
 
       <h2>1. Information We Don't Collect</h2>
-      <p>10 Minutes of Nothing is designed to be completely private. We do not collect, store, or transmit any personal information about you, including:</p>
+      <p>10 Minutes of Nothing is designed to be completely <span class="accent-text">private</span>. We do not collect, store, or transmit any <span class="accent-text">personal information</span> about you, including:</p>
       <ul>
-        <li>Your name, email address, or any contact information</li>
-        <li>Your usage patterns or app interactions</li>
-        <li>Your device information or location</li>
-        <li>Any analytics or tracking data</li>
-        <li>Your timer sessions or statistics</li>
+        <li>Your name, <span class="accent-text">email address</span>, or any contact information</li>
+        <li>Your usage patterns or <span class="accent-text">app interactions</span></li>
+        <li>Your device information or <span class="accent-text">location</span></li>
+        <li>Any analytics or <span class="accent-text">tracking data</span></li>
+        <li>Your timer sessions or <span class="accent-text">statistics</span></li>
       </ul>
 
       <h2>2. Local Data Storage</h2>
-      <p>All your data stays on your device using your browser's local storage:</p>
+      <p>All your data stays on your device using your browser's <span class="accent-text">local storage</span>:</p>
       <ul>
-        <li><strong>Timer Statistics:</strong> Your completed sessions, weekly minutes, and streak days are stored locally</li>
-        <li><strong>App Settings:</strong> Your preferred duration and display mode preferences</li>
+        <li><strong>Timer Statistics:</strong> Your <span class="accent-text">completed sessions</span>, weekly minutes, and streak days are stored locally</li>
+        <li><strong>App Settings:</strong> Your preferred <span class="accent-text">duration</span> and display mode preferences</li>
         <li><strong>A/B Test Bucket:</strong> Which motivational phrase you see (randomly assigned once)</li>
         <li><strong>Usage Flags:</strong> Whether you've used fullscreen mode (to hide the button)</li>
       </ul>
-      <p>This data never leaves your device and is not transmitted to any servers.</p>
+      <p>This data never leaves your device and is not transmitted to any <span class="accent-text">servers</span>.</p>
 
       <h2>3. No Third-Party Services</h2>
-      <p>We don't use any third-party services that could track you:</p>
+      <p>We don't use any <span class="accent-text">third-party services</span> that could track you:</p>
       <ul>
-        <li>No Google Analytics, Facebook Pixel, or similar tracking</li>
+        <li>No <span class="accent-text">Google Analytics</span>, Facebook Pixel, or similar tracking</li>
         <li>No advertising networks or marketing tools</li>
         <li>No social media integrations</li>
-        <li>No external APIs or data collection services</li>
+        <li>No external APIs or <span class="accent-text">data collection services</span></li>
       </ul>
 
       <h2>4. Technical Cookies</h2>
@@ -241,8 +283,7 @@
     <div class="footer">
       <p>
         <a href="/">Back to 10 Minutes of Nothing</a> | 
-        <a href="/legal/terms.html">Terms of Service</a> | 
-        <a href="/legal/email-setup.html">Email Setup Guide</a>
+        <a href="/legal/terms.html">Terms of Service</a>
       </p>
       <div style="margin-top: 2rem;">
         <a href="/" class="back-btn">← Back to App</a>

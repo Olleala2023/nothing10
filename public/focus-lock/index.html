@@ -47,15 +47,57 @@
         background: transparent;
         color: #ffffff;
         text-decoration: none;
-        border-radius: 8px;
-        font-size: 1rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
         transition: all 0.3s ease;
         margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .back-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .back-btn:hover::before {
+        left: 100%;
       }
       
       .back-btn:hover {
-        background: #ffffff;
-        color: #000000;
+        background: transparent;
+        color: #ffffff;
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      @keyframes borderGlow {
+        0%, 100% {
+          border-color: #ffffff;
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        25% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+        50% {
+          border-color: #7b68ee;
+          box-shadow: 0 0 20px rgba(123, 104, 238, 0.6);
+        }
+        75% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+      }
+      
+      .accent-text {
+        color: #2563eb;
+        font-weight: 500;
       }
       
       .section {
@@ -192,7 +234,7 @@
   <body>
     <div class="header">
       <h1>Focus Lock Guide</h1>
-      <p class="subtitle">How to prevent distractions during your 10-minute pause</p>
+      <p class="subtitle">How to prevent distractions during your pause session</p>
       <a href="/" class="back-btn">← Back to App</a>
     </div>
 
@@ -202,12 +244,12 @@
         iOS - Guided Access
       </h2>
       <p style="margin-bottom: 2rem; opacity: 0.8;">
-        Perfect for parents who want to ensure their child stays focused during the 10-minute session. The app includes guided breathing mode with 6-breaths-per-minute rhythm for enhanced focus.
+        Perfect for parents who want to ensure their child stays focused during the session. The app includes guided breathing mode with 6-breaths-per-minute rhythm for enhanced focus.
       </p>
       
       <ol class="steps">
         <li>
-          <strong>Enable Guided Access</strong>
+          <strong>Enable <span class="accent-text">Guided Access</span></strong>
           <br>Go to Settings → Accessibility → Guided Access → Turn on Guided Access
         </li>
         <li>
@@ -235,7 +277,7 @@
       
       <div class="warning">
         <strong>⚠️ Important:</strong>
-        To exit Guided Access, triple-click the side button and enter your passcode. Make sure you remember the code!
+        To exit Guided Access, <span class="accent-text">triple-click</span> the side button and enter your passcode. Make sure you remember the code!
       </div>
     </div>
 
@@ -250,7 +292,7 @@
       
       <ol class="steps">
         <li>
-          <strong>Enable Screen Pinning</strong>
+          <strong>Enable <span class="accent-text">Screen Pinning</span></strong>
           <br>Go to Settings → Security → Screen Pinning → Turn on "Pin windows"
         </li>
         <li>
@@ -306,7 +348,7 @@
         </li>
         <li>
           <strong>Start Your Session</strong>
-          <br>Begin your 10-minute timer and resist the urge to check other apps
+          <br>Begin your timer and resist the urge to check other apps
         </li>
       </ol>
       

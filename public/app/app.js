@@ -7,14 +7,10 @@ class NothingTimer {
     this.isRunning = false;
     this.timeLeft = 0; // seconds
     this.intervalId = null;
-    this.phrases = [
-      "10 minutes of nothing",
-      "I'm doing nothing for 10 minutes",
-      "I'm taking a break from everything for 10 minutes",
-      "Pause. Only silence and breath",
-      "Not touching anything for 10 minutes",
-      "Right now, I'm not rushing anywhere"
-    ];
+    this.phrases = [];
+    
+    // Phrases will be set dynamically based on duration
+    this.updatePhrases();
     
     this.init();
   }
@@ -59,6 +55,9 @@ class NothingTimer {
     // Completion screen elements
     this.anotherBtn = document.getElementById('another-btn');
     this.exitBtn = document.getElementById('exit-btn');
+    this.completionDuration = document.getElementById('completion-duration');
+    this.reflectionText = document.getElementById('reflection-text');
+    this.saveReflectionBtn = document.getElementById('save-reflection');
     
     // Stats elements
     this.statsBtn = document.getElementById('stats-btn');
@@ -67,6 +66,7 @@ class NothingTimer {
     this.completedSessionsEl = document.getElementById('completed-sessions');
     this.totalMinutesEl = document.getElementById('total-minutes');
     this.streakDaysEl = document.getElementById('streak-days');
+    this.reflectionsList = document.getElementById('reflections-list');
   }
 
   setupEventListeners() {
@@ -89,7 +89,7 @@ class NothingTimer {
       const minutes = parseInt(this.customMinutes.value);
       if (minutes >= 1 && minutes <= 60) {
         this.currentDuration = minutes;
-        this.updateStartButton();
+        this.updateStartButton(); // This already calls updatePhrases()
         this.customDuration.classList.add('hidden');
       }
     });
@@ -139,6 +139,21 @@ class NothingTimer {
       this.showWelcomeScreen();
     });
 
+    // Save reflection
+    this.saveReflectionBtn.addEventListener('click', () => {
+      this.saveReflection();
+    });
+
+    // Allow Enter+Ctrl/Cmd to save reflection
+    if (this.reflectionText) {
+      this.reflectionText.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+          e.preventDefault();
+          this.saveReflection();
+        }
+      });
+    }
+
     // Stats
     this.statsBtn.addEventListener('click', () => {
       this.showStats();
@@ -182,7 +197,7 @@ class NothingTimer {
     } else {
       this.customDuration.classList.add('hidden');
       this.currentDuration = parseInt(duration);
-      this.updateStartButton();
+      this.updateStartButton(); // This calls updatePhrases() which updates the displayed phrase
     }
   }
 
@@ -200,17 +215,31 @@ class NothingTimer {
 
   updateStartButton() {
     this.startBtn.textContent = `Start ${this.currentDuration} Minutes`;
+    this.updatePhrases();
+    // Update phrase if welcome screen is visible
+    if (this.welcomeScreen && this.welcomeScreen.classList.contains('active')) {
+      this.showPhrase();
+    }
+  }
+
+  updatePhrases() {
+    const duration = this.currentDuration;
+    this.phrases = [
+      `${duration} minutes of nothing`,
+      `I'm doing nothing for ${duration} minutes`,
+      `I'm taking a break from everything for ${duration} minutes`,
+      "Pause. Only silence and breath",
+      `Not touching anything for ${duration} minutes`,
+      "Right now, I'm not rushing anywhere"
+    ];
   }
 
   showPhrase() {
     const bucket = this.getPhraseBucket();
     const phrase = this.phrases[bucket];
     this.phraseEl.textContent = phrase;
-    
-    // Hide phrase after 3 seconds
-    setTimeout(() => {
-      this.phraseEl.style.opacity = '0';
-    }, 3000);
+    // Keep phrase visible - no timeout
+    this.phraseEl.style.opacity = '0.8';
   }
 
   showPhraseOnTimer() {
@@ -283,7 +312,7 @@ class NothingTimer {
     this.touchHint.classList.remove('hidden');
     setTimeout(() => {
       this.touchHint.classList.add('hidden');
-    }, 300);
+    }, 2500);
   }
 
   showTimerScreen() {
@@ -327,6 +356,13 @@ class NothingTimer {
   showCompletionScreen() {
     this.hideAllScreens();
     this.completionScreen.classList.add('active');
+    if (this.completionDuration) {
+      this.completionDuration.textContent = this.currentDuration;
+    }
+    // Clear reflection textarea
+    if (this.reflectionText) {
+      this.reflectionText.value = '';
+    }
   }
 
   showWelcomeScreen() {
@@ -408,10 +444,107 @@ class NothingTimer {
 
   showStats() {
     this.statsModal.classList.remove('hidden');
+    this.loadReflections();
   }
 
   hideStats() {
     this.statsModal.classList.add('hidden');
+  }
+
+  saveReflection() {
+    const text = this.reflectionText.value.trim();
+    if (!text) return;
+
+    const reflection = {
+      text: text,
+      date: new Date().toISOString(),
+      duration: this.currentDuration
+    };
+
+    let reflections = this.loadAllReflections();
+    reflections.unshift(reflection); // Add to beginning
+    reflections = reflections.slice(0, 50); // Keep only last 50
+
+    localStorage.setItem('reflections', JSON.stringify(reflections));
+    
+    // Clear textarea
+    this.reflectionText.value = '';
+    
+    // Show success feedback
+    const saveBtn = this.saveReflectionBtn;
+    const originalText = saveBtn.textContent;
+    saveBtn.textContent = 'Saved!';
+    saveBtn.style.opacity = '0.7';
+    setTimeout(() => {
+      saveBtn.textContent = originalText;
+      saveBtn.style.opacity = '1';
+    }, 1500);
+
+    // Update reflections list if modal is open
+    if (!this.statsModal.classList.contains('hidden')) {
+      this.loadReflections();
+    }
+  }
+
+  loadAllReflections() {
+    try {
+      const stored = localStorage.getItem('reflections');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  loadReflections() {
+    const reflections = this.loadAllReflections();
+    
+    if (reflections.length === 0) {
+      this.reflectionsList.innerHTML = '<p class="no-reflections">No reflections yet. Complete a session and write your thoughts!</p>';
+      return;
+    }
+
+    this.reflectionsList.innerHTML = reflections.map((reflection, index) => {
+      const date = new Date(reflection.date);
+      const dateStr = date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        year: date.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined
+      });
+      const timeStr = date.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false
+      });
+      
+      return `
+        <div class="reflection-item">
+          <div class="reflection-date">${dateStr} ${timeStr}</div>
+          <div class="reflection-text">${this.escapeHtml(reflection.text)}</div>
+          <button class="delete-reflection" data-index="${index}">×</button>
+        </div>
+      `;
+    }).join('');
+
+    // Add delete handlers
+    this.reflectionsList.querySelectorAll('.delete-reflection').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = parseInt(e.target.dataset.index);
+        this.deleteReflection(index);
+      });
+    });
+  }
+
+  deleteReflection(index) {
+    let reflections = this.loadAllReflections();
+    reflections.splice(index, 1);
+    localStorage.setItem('reflections', JSON.stringify(reflections));
+    this.loadReflections();
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
   loadSettings() {

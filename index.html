@@ -4,9 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="10 Minutes of Nothing - A pause ritual: open and don't touch anything for 10 minutes." />
+    
+    <!-- Primary Meta Tags -->
+    <title>10 Minutes of Nothing - A Digital Pause Ritual</title>
+    <meta name="title" content="10 Minutes of Nothing - A Digital Pause Ritual" />
+    <meta name="description" content="A minimalist timer app for digital mindfulness. Take a pause, do nothing for 10 minutes. Choose your focus mode: hidden screen, ghost timer, or guided breathing. Privacy-focused, no tracking, works offline." />
+    <meta name="keywords" content="mindfulness, meditation, timer, pause, digital detox, breathing, focus, wellness, privacy, PWA" />
+    <meta name="author" content="10 Minutes of Nothing" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
     <meta name="theme-color" content="#000000" />
-    <title>10 Minutes of Nothing</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nothing10.com/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nothing10.com/" />
+    <meta property="og:title" content="10 Minutes of Nothing - A Digital Pause Ritual" />
+    <meta property="og:description" content="A minimalist timer app for digital mindfulness. Take a pause, do nothing for 10 minutes. Privacy-focused, no tracking, works offline." />
+    <meta property="og:image" content="https://nothing10.com/icons/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="10 Minutes of Nothing - A Digital Pause Ritual" />
+    <meta property="og:site_name" content="10 Minutes of Nothing" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://nothing10.com/" />
+    <meta name="twitter:title" content="10 Minutes of Nothing - A Digital Pause Ritual" />
+    <meta name="twitter:description" content="A minimalist timer app for digital mindfulness. Take a pause, do nothing for 10 minutes. Privacy-focused, no tracking, works offline." />
+    <meta name="twitter:image" content="https://nothing10.com/icons/icon-512.png" />
+    <meta name="twitter:image:alt" content="10 Minutes of Nothing - A Digital Pause Ritual" />
+    
+    <!-- LinkedIn -->
+    <meta property="article:author" content="10 Minutes of Nothing" />
     <style>
       * {
         margin: 0;
@@ -66,31 +99,78 @@
         text-decoration: none;
         font-size: 1.1rem;
         font-weight: 500;
-        border-radius: 8px;
+        border-radius: 30px;
         transition: all 0.3s ease;
         cursor: pointer;
         min-height: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .btn:hover::before {
+        left: 100%;
       }
       
       .btn:hover {
-        background: #ffffff;
-        color: #000000;
+        background: transparent;
+        color: #ffffff;
         transform: translateY(-2px);
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      @keyframes borderGlow {
+        0%, 100% {
+          border-color: #ffffff;
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        25% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+        50% {
+          border-color: #7b68ee;
+          box-shadow: 0 0 20px rgba(123, 104, 238, 0.6);
+        }
+        75% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
       }
       
       .btn-primary {
         background: #ffffff;
         color: #000000;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1.2rem 2rem;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .btn-primary::before {
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
       }
       
       .btn-primary:hover {
         background: #f0f0f0;
+        color: #000000;
         transform: translateY(-2px);
+        animation: borderGlow 2s ease infinite;
       }
       
       .contact {
@@ -157,7 +237,7 @@
       
       <div class="cta-buttons">
         <a href="/app" class="btn btn-primary">Launch App</a>
-        <a href="/focus-lock/index.html" class="btn">How to Lock Screen</a>
+        <a href="/focus-lock/index.html" class="btn">How It Works & Why</a>
       </div>
       
       <div class="contact">
