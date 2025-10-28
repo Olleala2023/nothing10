@@ -11,9 +11,11 @@ A minimalist Progressive Web App for digital mindfulness - a 10-minute pause rit
 
 - **Smart Reset**: Timer resets on any interaction (mouse movement, touch, window switching)
 - **Local Statistics**: Tracks sessions, weekly minutes, and streak days
+- **Reflection Journal**: Save thoughts and gratitude after each session
 - **Offline Support**: Works without internet connection
 - **PWA Installable**: Add to home screen on mobile devices
 - **Focus Lock Guide**: Instructions for iOS Guided Access and Android Screen Pinning
+- **SEO Optimized**: Comprehensive meta-tags for social sharing (OG, Twitter, LinkedIn)
 
 ## 🚀 Quick Start
 
@@ -48,13 +50,15 @@ npm run preview
 3. **Start Timer**: Tap "Start" and put device down
 4. **Stay Focused**: Any interaction resets the timer
 5. **Complete**: Get completion message and statistics
+6. **Reflect** (optional): Record your thoughts or gratitude after the session
 
 ## 🧘 Breathing Mode
 
-The breathing dot follows a 6-breaths-per-minute rhythm:
+The breathing indicator follows a 6-breaths-per-minute rhythm:
+- **Square indicator** with moving dot along the edges
+- **Phase labels**: Inhale, Hold, Exhale, Rest
 - **10-second cycles** (5 seconds in, 5 seconds out)
-- **Visual guidance** with size and opacity changes
-- **Calming animation** to help focus
+- **Visual guidance** to help maintain focus
 
 ## 🔒 Focus Lock (For Parents)
 
@@ -90,10 +94,29 @@ nothing10/
 ├── public/                 # Static assets
 │   ├── app/               # PWA manifest & service worker
 │   ├── icons/             # PWA icons (PNG + SVG)
-│   ├── legal/             # Privacy, Terms, Email setup
+│   ├── legal/             # Privacy Policy, Terms of Service
 │   └── focus-lock/        # Screen locking instructions
 └── scripts/               # Build utilities
 ```
+
+## 📝 Recent Updates
+
+### UI/UX Improvements
+- **Unified Button Styles**: All buttons now have consistent 30px border-radius
+- **Enhanced Hover Effects**: Improved animations with glare and colored border effects
+- **Updated Landing Page**: Replaced SVG logo with text "Launch App" for better readability
+- **Standardized Typography**: Consistent font sizes across all pages (1.1rem for buttons, 0.9rem for small text)
+- **Improved Button Labels**: Changed "How to Lock Screen" to "How It Works & Why"
+
+### New Features
+- **Reflection Journal**: Users can record thoughts, gratitude, or state after each session
+- **Enhanced Breathing Mode**: Replaced circular indicator with square breathing guide with phase labels
+- **Extended Touch Hint**: Increased display time for timer reset hint to 2.5 seconds
+
+### Technical Improvements
+- **SEO Enhancement**: Added comprehensive meta-tags for Open Graph, Twitter Cards, and LinkedIn
+- **Code Cleanup**: Removed email-setup.html page (not for end users)
+- **Bug Fixes**: Fixed phrase display duplication, improved button hover states
 
 ## 🚀 Deployment
 
