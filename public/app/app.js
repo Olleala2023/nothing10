@@ -20,6 +20,7 @@ class NothingTimer {
     this.setupEventListeners();
     this.loadSettings();
     this.loadStats();
+    this.updateStartButton(); // Initialize button text with current duration
     this.showPhrase();
     this.updateStatsDisplay();
     
@@ -214,7 +215,8 @@ class NothingTimer {
   }
 
   updateStartButton() {
-    this.startBtn.textContent = `Start ${this.currentDuration} Minutes`;
+    const minutesText = this.currentDuration === 1 ? 'Minute' : 'Minutes';
+    this.startBtn.textContent = `Start ${this.currentDuration} ${minutesText}`;
     this.updatePhrases();
     // Update phrase if welcome screen is visible
     if (this.welcomeScreen && this.welcomeScreen.classList.contains('active')) {

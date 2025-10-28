@@ -405,53 +405,62 @@ body {
 }
 
 .breathing-square {
-  width: 200px;
-  height: 200px;
+  --square-size: 200px;
+  --dot-size: 16px;
+  
+  width: var(--square-size);
+  height: var(--square-size);
   border: 2px solid rgba(255, 255, 255, 0.3);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .breathing-indicator {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #ffffff;
   position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background: #ffffff;
+  border-radius: 50%;
   opacity: 0.8;
-  animation: breathingSquare 10s ease-in-out infinite;
+  /* Start at bottom left corner */
+  top: calc(var(--square-size) - var(--dot-size) / 2);
+  left: calc(-1 * var(--dot-size) / 2);
+  animation: breathingSquare 10s linear infinite;
+  will-change: transform;
 }
 
 @keyframes breathingSquare {
+  /* Start at bottom left corner - начало Inhale фазы */
   0% {
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translate(0, 0);
+  }
+  /* Left edge - Inhale (moving up to top left corner) - 25% (2.5 seconds) */
+  24.999% {
+    transform: translate(0, calc(-1 * var(--square-size)));
   }
   25% {
-    top: 50%;
-    left: calc(100% - 8px);
-    transform: translate(-50%, -50%);
+    transform: translate(0, calc(-1 * var(--square-size)));
+  }
+  /* Top edge - Hold (moving right to top right corner) - 25% (2.5 seconds) */
+  49.999% {
+    transform: translate(var(--square-size), calc(-1 * var(--square-size)));
   }
   50% {
-    top: calc(100% - 8px);
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translate(var(--square-size), calc(-1 * var(--square-size)));
+  }
+  /* Right edge - Exhale (moving down to bottom right corner) - 25% (2.5 seconds) */
+  74.999% {
+    transform: translate(var(--square-size), 0);
   }
   75% {
-    top: 50%;
-    left: -8px;
-    transform: translate(-50%, -50%);
+    transform: translate(var(--square-size), 0);
   }
+  /* Bottom edge - Hold (moving left back to bottom left corner) - 25% (2.5 seconds) */
   100% {
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translate(0, 0);
   }
 }
 
@@ -488,7 +497,7 @@ body {
 }
 
 .label-left {
-  left: -2.5rem;
+  left: -3.5rem;
   top: 50%;
   transform: translateY(-50%);
 }

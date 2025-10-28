@@ -111,21 +111,18 @@ Cloudflare will automatically create:
 ### 5.1 Cloudflare Email Routing
 1. In Cloudflare Dashboard, go to **Email** → **Email Routing**
 2. Click "Get started"
-3. Add `contact@nothing10.com`
-4. Forward to your personal email
-5. Verify email address
-
-### 5.2 Alternative: Gmail with Custom Domain
-1. Sign up for [Google Workspace](https://workspace.google.com)
-2. Verify domain ownership
-3. Create `contact@nothing10.com` user
-4. Update DNS MX records
+3. Cloudflare will automatically add required MX and TXT DNS records
+4. Go to **Email Routing** → **Email Addresses** → **Create Address**
+5. Enter `contact` as the local part (creates `contact@nothing10.com`)
+6. Set destination: Enter your personal email address (Gmail, Outlook, etc.)
+7. Verify setup by sending a test email to `contact@nothing10.com`
 
 ## Step 6: Monitoring & Maintenance
 
 ### 6.1 Analytics (Optional)
-- Cloudflare provides basic analytics
-- No additional tracking needed (privacy-focused app)
+- Cloudflare provides DNS-level analytics (no tracking, privacy-friendly)
+- For detailed analytics setup, see [ANALYTICS_GUIDE.md](./ANALYTICS_GUIDE.md)
+- Current app is privacy-focused: no tracking, no analytics scripts
 
 ### 6.2 Updates
 1. Make changes locally
