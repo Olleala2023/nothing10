@@ -1,5 +1,7 @@
 // 10 Minutes of Nothing - PWA Timer App
 
+import './style.css';
+
 class NothingTimer {
   constructor() {
     this.currentDuration = 10; // minutes
@@ -352,6 +354,13 @@ class NothingTimer {
     this.isRunning = false;
     clearInterval(this.intervalId);
     this.updateStats();
+    
+    // Clean up timer phrase element
+    const timerPhrase = document.getElementById('timer-phrase');
+    if (timerPhrase) {
+      timerPhrase.remove();
+    }
+    
     this.showCompletionScreen();
   }
 
@@ -372,6 +381,43 @@ class NothingTimer {
     this.welcomeScreen.classList.add('active');
     this.showPhrase();
     this.updateStartButton();
+    
+    // Clean up any timer phrase element that might be left over
+    const timerPhrase = document.getElementById('timer-phrase');
+    if (timerPhrase) {
+      timerPhrase.remove();
+    }
+    
+    // Reset button states to ensure proper styling
+    this.durationBtns.forEach(btn => {
+      btn.classList.remove('active');
+    });
+    this.modeBtns.forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Re-apply active states based on current settings
+    const activeDurationBtn = document.querySelector(`[data-duration="${this.currentDuration}"]`);
+    if (activeDurationBtn) {
+      activeDurationBtn.classList.add('active');
+    }
+    
+    const activeModeBtn = document.querySelector(`[data-mode="${this.currentMode}"]`);
+    if (activeModeBtn) {
+      activeModeBtn.classList.add('active');
+    }
+    
+    // Show mode description for current mode
+    document.querySelectorAll('.mode-desc').forEach(desc => {
+      desc.classList.remove('active');
+    });
+    const activeModeDesc = document.querySelector(`.mode-desc[data-mode="${this.currentMode}"]`);
+    if (activeModeDesc) {
+      activeModeDesc.classList.add('active');
+    }
+    
+    // Reset any ongoing animations by forcing a reflow
+    this.welcomeScreen.offsetHeight;
   }
 
   hideAllScreens() {
@@ -587,3 +633,6 @@ document.addEventListener('visibilitychange', () => {
     // For now, we'll let it continue running
   }
 });
+
+// Export for module usage
+export default NothingTimer;

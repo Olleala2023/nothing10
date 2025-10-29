@@ -31,6 +31,8 @@ npm run build
 npm run preview
 ```
 
+**Note**: The build process now uses Vite with asset hashing for optimal caching. CSS and JS files are automatically versioned to prevent browser caching issues.
+
 ## 📱 Installation
 
 ### Mobile (PWA)
@@ -87,16 +89,19 @@ Perfect for children who need help staying focused:
 ```
 nothing10/
 ├── index.html              # Landing page
-├── app/                    # PWA application
+├── src/app/                # PWA application source
 │   ├── index.html         # Main app interface
-│   ├── app.js             # Timer logic & interactions
+│   ├── app.js             # Timer logic & interactions (ES modules)
 │   └── style.css          # App styles
 ├── public/                 # Static assets
 │   ├── app/               # PWA manifest & service worker
 │   ├── icons/             # PWA icons (PNG + SVG)
 │   ├── legal/             # Privacy Policy, Terms of Service
 │   └── focus-lock/        # Screen locking instructions
-└── scripts/               # Build utilities
+├── dist/                   # Production build (auto-generated)
+│   ├── app/               # Processed PWA files
+│   └── assets/            # Versioned CSS/JS files with hashes
+└── vite.config.js         # Vite configuration for asset hashing
 ```
 
 ## 📝 Recent Updates
@@ -114,6 +119,9 @@ nothing10/
 - **Extended Touch Hint**: Increased display time for timer reset hint to 2.5 seconds
 
 ### Technical Improvements
+- **Vite Asset Hashing**: Implemented automatic file versioning to prevent browser caching issues
+- **ES Modules**: Converted to modern JavaScript modules for better performance
+- **Build Optimization**: Streamlined build process with Vite for faster, more reliable builds
 - **SEO Enhancement**: Added comprehensive meta-tags for Open Graph, Twitter Cards, and LinkedIn
 - **Code Cleanup**: Removed email-setup.html page (not for end users)
 - **Bug Fixes**: Fixed phrase display duplication, improved button hover states

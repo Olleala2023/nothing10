@@ -1,10 +1,8 @@
 // Service Worker for 10 Minutes of Nothing PWA
-const CACHE_NAME = 'nothing10-v1';
+const CACHE_NAME = 'nothing10-v2';
 const CACHE_URLS = [
   '/app/',
   '/app/index.html',
-  '/app/app.js',
-  '/app/style.css',
   '/app/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
