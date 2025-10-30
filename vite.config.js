@@ -7,10 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        'app/index.html': resolve(__dirname, 'src/app/index.html'),
-        'focus-lock/index.html': resolve(__dirname, 'public/focus-lock/index.html'),
-        'legal/privacy.html': resolve(__dirname, 'public/legal/privacy.html'),
-        'legal/terms.html': resolve(__dirname, 'public/legal/terms.html')
+        'app/index.html': resolve(__dirname, 'src/app/index.html')
       }
     },
     assetsInlineLimit: 0, // Не инлайнить ассеты, чтобы они получали хеши
@@ -22,5 +19,8 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true
+  },
+  preview: {
+    port: 5173
   }
 })

@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Breathing Pacer - 6 breaths per minute breathing exercise tool. Simple inhale/exhale animation with customizable tempo (4-7.5 bpm) and breathing patterns. No accounts, works offline." />
+    <meta name="keywords" content="breathing exercise, breathing pacer, meditation, stress relief, sleep aid, breathing pattern, bpm, inhale exhale, mindfulness, relaxation" />
+    <meta name="author" content="10 Minutes of Nothing" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="theme-color" content="#000000" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nothing10.com/tools/breathing-pacer.html" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nothing10.com/tools/breathing-pacer.html" />
+    <meta property="og:title" content="Breathing Pacer - 6 Breaths Per Minute" />
+    <meta property="og:description" content="Simple breathing exercise tool with customizable tempo and patterns. Perfect for stress relief, sleep aid, and mindfulness practice. No accounts, works offline." />
+    <meta property="og:image" content="https://nothing10.com/icons/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Breathing Pacer - 6 Breaths Per Minute" />
+    <meta property="og:site_name" content="10 Minutes of Nothing" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://nothing10.com/tools/breathing-pacer.html" />
+    <meta name="twitter:title" content="Breathing Pacer - 6 Breaths Per Minute" />
+    <meta name="twitter:description" content="Simple breathing exercise tool with customizable tempo and patterns. Perfect for stress relief, sleep aid, and mindfulness practice. No accounts, works offline." />
+    <meta name="twitter:image" content="https://nothing10.com/icons/icon-512.png" />
+    <meta name="twitter:image:alt" content="Breathing Pacer - 6 Breaths Per Minute" />
+    
+    <title>Breathing Pacer - 6 Breaths Per Minute</title>
+    <link rel="icon" href="/icons/icon-192.png" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: #000000;
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+      
+      .container {
+        max-width: 600px;
+        width: 100%;
+      }
+      
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 300;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+      }
+      
+      .subtitle {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        font-weight: 400;
+        margin-bottom: 3rem;
+        opacity: 0.8;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .breathing-circle {
+        width: 200px;
+        height: 200px;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        margin: 2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 0.5s ease;
+      }
+      
+      .breathing-circle.active {
+        animation: breathe 10s ease-in-out infinite;
+      }
+      
+      @keyframes breathe {
+        0%, 100% {
+          transform: scale(0.8);
+          border-color: #ffffff;
+        }
+        50% {
+          transform: scale(1.2);
+          border-color: #4a90e2;
+        }
+      }
+      
+      .breathing-text {
+        font-size: 1.5rem;
+        font-weight: 300;
+        opacity: 0.9;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      .controls {
+        margin: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .control-group label {
+        font-size: 1rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+      }
+      
+      .control-group input[type="range"] {
+        width: 200px;
+        height: 6px;
+        background: #333;
+        border-radius: 3px;
+        outline: none;
+        -webkit-appearance: none;
+      }
+      
+      .control-group input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .control-group input[type="range"]::-webkit-slider-thumb:hover {
+        background: #4a90e2;
+        transform: scale(1.1);
+      }
+      
+      .control-group input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      
+      .control-group input[type="range"]::-moz-range-thumb:hover {
+        background: #4a90e2;
+        transform: scale(1.1);
+      }
+      
+      .value-display {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #4a90e2;
+        margin-top: 0.5rem;
+      }
+      
+      .pattern-selector {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .pattern-btn {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid #333;
+        background: transparent;
+        color: #ffffff;
+        border-radius: 24px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .pattern-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .pattern-btn:hover::before {
+        left: 100%;
+      }
+      
+      .pattern-btn:hover {
+        border-color: #ffffff;
+        transform: translateY(-2px);
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      .pattern-btn.active {
+        background: #ffffff;
+        color: #000000;
+        border-color: #ffffff;
+      }
+      
+      @keyframes borderGlow {
+        0%, 100% {
+          border-color: #ffffff;
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        25% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+        50% {
+          border-color: #7b68ee;
+          box-shadow: 0 0 20px rgba(123, 104, 238, 0.6);
+        }
+        75% {
+          border-color: #4a90e2;
+          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+        }
+      }
+      
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border: 2px solid #ffffff;
+        background: transparent;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .btn:hover::before {
+        left: 100%;
+      }
+      
+      .btn:hover {
+        background: transparent;
+        color: #ffffff;
+        transform: translateY(-2px);
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      .btn-primary {
+        background: #ffffff;
+        color: #000000;
+        font-size: 1.1rem;
+        padding: 1.2rem 2rem;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .btn-primary::before {
+        background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+      }
+      
+      .btn-primary:hover {
+        background: #f0f0f0;
+        color: #000000;
+        transform: translateY(-2px);
+        animation: borderGlow 2s ease infinite;
+      }
+      
+      .footer {
+        margin-top: auto;
+        padding-top: 2rem;
+        border-top: 1px solid #333;
+        width: 100%;
+        max-width: 500px;
+      }
+      
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      
+      .footer-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+        color: #ffffff;
+      }
+      
+      @media (max-width: 480px) {
+        body {
+          padding: 1rem;
+        }
+        
+        .cta-buttons {
+          margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+          gap: 1rem;
+        }
+        
+        .pattern-selector {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .breathing-circle {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Breathing Pacer</h1>
+      <p class="subtitle">6 breaths per minute</p>
+      
+      <div class="breathing-container" id="breathingContainer">
+        <div class="breathing-barrel" id="breathingBarrel">
+          <div class="breathing-text" id="breathingText">Ready</div>
+        </div>
+        <div class="breathing-path" id="breathingPath"></div>
+      </div>
+      
+      <div class="controls">
+        <div class="control-group">
+          <label for="tempoSlider">Breaths per minute</label>
+          <input type="range" id="tempoSlider" min="4" max="7.5" step="0.5" value="6">
+          <div class="value-display" id="tempoValue">6.0 bpm</div>
+        </div>
+        
+        <div class="control-group">
+          <label>Breathing Pattern</label>
+          <div class="pattern-selector">
+            <button class="pattern-btn active" data-pattern="4-2-6">4-2-6 (Triangle)</button>
+            <button class="pattern-btn" data-pattern="4-4-4-4">4-4-4-4 (Square)</button>
+            <button class="pattern-btn" data-pattern="6-0-6">6-0-6 (Line)</button>
+            <button class="pattern-btn" data-pattern="custom">Custom</button>
+          </div>
+        </div>
+        
+        <div class="custom-controls" id="customControls" style="display: none;">
+          <div class="custom-summary">
+            <div class="summary-title">Custom Pattern Summary</div>
+            <div class="summary-bpm" id="customBpm">6.0 breaths per minute</div>
+            <div class="summary-total" id="customTotal">Total cycle: 12.0 seconds</div>
+          </div>
+          
+          <div class="custom-row">
+            <label for="inhaleSlider">Inhale (seconds)</label>
+            <input type="range" id="inhaleSlider" min="1" max="10" step="0.5" value="4">
+            <div class="value-display" id="inhaleValue">4.0s</div>
+          </div>
+          <div class="custom-row">
+            <label for="hold1Slider">Hold 1 (seconds)</label>
+            <input type="range" id="hold1Slider" min="0" max="10" step="0.5" value="2">
+            <div class="value-display" id="hold1Value">2.0s</div>
+          </div>
+          <div class="custom-row">
+            <label for="exhaleSlider">Exhale (seconds)</label>
+            <input type="range" id="exhaleSlider" min="1" max="10" step="0.5" value="6">
+            <div class="value-display" id="exhaleValue">6.0s</div>
+          </div>
+          <div class="custom-row">
+            <label for="hold2Slider">Hold 2 (seconds)</label>
+            <input type="range" id="hold2Slider" min="0" max="10" step="0.5" value="0">
+            <div class="value-display" id="hold2Value">0.0s</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-buttons">
+        <button id="startBtn" class="btn btn-primary">Start Breathing</button>
+        <a href="/" class="btn">Back to Home</a>
+      </div>
+      
+      <footer class="footer">
+        <div class="footer-links">
+          <a href="/about.html">About</a>
+          <a href="/legal/privacy.html">Privacy Policy</a>
+          <a href="/legal/terms.html">Terms of Service</a>
+          <a href="mailto:contact@nothing10.com">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      class BreathingPacer {
+        constructor() {
+          this.isRunning = false;
+          this.tempo = 6.0; // breaths per minute
+          this.pattern = '4-2-6'; // inhale-hold-exhale-hold
+          this.intervalId = null;
+          this.phaseIndex = 0;
+          this.phases = [];
+          this.customValues = { inhale: 4, hold1: 2, exhale: 6, hold2: 0 };
+          
+          this.init();
+        }
+        
+        init() {
+          this.setupElements();
+          this.setupEventListeners();
+          this.updateCustomSummary();
+          this.updatePattern();
+        }
+        
+        setupElements() {
+          this.breathingBarrel = document.getElementById('breathingBarrel');
+          this.breathingText = document.getElementById('breathingText');
+          this.breathingContainer = document.getElementById('breathingContainer');
+          this.tempoSlider = document.getElementById('tempoSlider');
+          this.tempoValue = document.getElementById('tempoValue');
+          this.startBtn = document.getElementById('startBtn');
+          this.patternBtns = document.querySelectorAll('.pattern-btn');
+          this.customControls = document.getElementById('customControls');
+          this.customSliders = {
+            inhale: document.getElementById('inhaleSlider'),
+            hold1: document.getElementById('hold1Slider'),
+            exhale: document.getElementById('exhaleSlider'),
+            hold2: document.getElementById('hold2Slider')
+          };
+          this.customValues = {
+            inhale: document.getElementById('inhaleValue'),
+            hold1: document.getElementById('hold1Value'),
+            exhale: document.getElementById('exhaleValue'),
+            hold2: document.getElementById('hold2Value')
+          };
+          this.customBpm = document.getElementById('customBpm');
+          this.customTotal = document.getElementById('customTotal');
+          
+        }
+        
+        setupEventListeners() {
+          this.tempoSlider.addEventListener('input', (e) => {
+            this.tempo = parseFloat(e.target.value);
+            this.tempoValue.textContent = `${this.tempo} bpm`;
+            if (this.isRunning) {
+              this.updatePattern();
+            }
+          });
+          
+          this.patternBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              this.patternBtns.forEach(b => b.classList.remove('active'));
+              e.target.classList.add('active');
+              this.pattern = e.target.dataset.pattern;
+              
+              if (this.pattern === 'custom') {
+                this.customControls.style.display = 'block';
+              } else {
+                this.customControls.style.display = 'none';
+              }
+              
+              this.updatePattern();
+            });
+          });
+          
+          // Custom sliders
+          Object.keys(this.customSliders).forEach(key => {
+            this.customSliders[key].addEventListener('input', (e) => {
+              const value = parseFloat(e.target.value);
+              this.customValues[key].textContent = `${value}s`;
+              if (this.pattern === 'custom') {
+                this.updateCustomSummary();
+                this.updatePattern();
+              }
+            });
+          });
+          
+          this.startBtn.addEventListener('click', () => {
+            if (this.isRunning) {
+              this.stop();
+            } else {
+              this.start();
+            }
+          });
+        }
+        
+        updateCustomSummary() {
+          if (this.pattern !== 'custom') return;
+          
+          const inhale = parseFloat(this.customSliders.inhale.value);
+          const hold1 = parseFloat(this.customSliders.hold1.value);
+          const exhale = parseFloat(this.customSliders.exhale.value);
+          const hold2 = parseFloat(this.customSliders.hold2.value);
+          
+          const totalCycleTime = inhale + hold1 + exhale + hold2;
+          const breathsPerMinute = 60 / totalCycleTime;
+          
+          this.customBpm.textContent = `${breathsPerMinute.toFixed(1)} breaths per minute`;
+          this.customTotal.textContent = `Total cycle: ${totalCycleTime.toFixed(1)} seconds`;
+        }
+        
+        updatePattern() {
+          let inhale, hold1, exhale, hold2;
+          
+          if (this.pattern === 'custom') {
+            inhale = parseFloat(this.customSliders.inhale.value);
+            hold1 = parseFloat(this.customSliders.hold1.value);
+            exhale = parseFloat(this.customSliders.exhale.value);
+            hold2 = parseFloat(this.customSliders.hold2.value);
+          } else {
+            [inhale, hold1, exhale, hold2] = this.pattern.split('-').map(Number);
+          }
+          
+          const totalTime = 60 / this.tempo; // total time for one breath cycle
+          const totalBreathTime = inhale + hold1 + exhale + hold2;
+          
+          this.phases = [
+            { name: 'Inhale', duration: (inhale / totalBreathTime) * totalTime, direction: 'up' },
+            { name: 'Hold', duration: (hold1 / totalBreathTime) * totalTime, direction: 'right' },
+            { name: 'Exhale', duration: (exhale / totalBreathTime) * totalTime, direction: 'down' },
+            { name: 'Hold', duration: (hold2 / totalBreathTime) * totalTime, direction: 'left' }
+          ];
+          
+          this.updateAnimation();
+        }
+        
+        updateAnimation() {
+          const totalTime = this.phases.reduce((sum, phase) => sum + phase.duration, 0);
+          
+          // Set appropriate animation based on pattern
+          if (this.pattern === '4-2-6') {
+            this.breathingBarrel.style.animation = `barrelMoveTriangle ${totalTime}s ease-in-out infinite`;
+          } else if (this.pattern === '4-4-4-4') {
+            this.breathingBarrel.style.animation = `barrelMoveSquare ${totalTime}s ease-in-out infinite`;
+          } else if (this.pattern === '6-0-6') {
+            this.breathingBarrel.style.animation = `barrelMoveLine ${totalTime}s ease-in-out infinite`;
+          } else if (this.pattern === 'custom') {
+            // For custom patterns, we'll use a generic animation
+            this.breathingBarrel.style.animation = `barrelMove ${totalTime}s ease-in-out infinite`;
+          }
+        }
+        
+        resetAnimation() {
+          // Reset to default pulse animation when stopped
+          this.breathingBarrel.style.animation = 'barrelPulse 2s ease-in-out infinite';
+        }
+        
+        start() {
+          this.isRunning = true;
+          this.phaseIndex = 0;
+          this.startBtn.textContent = 'Stop Breathing';
+          this.updateAnimation(); // Ensure animation is set when starting
+          this.runPhase();
+        }
+        
+        stop() {
+          this.isRunning = false;
+          this.startBtn.textContent = 'Start Breathing';
+          this.resetAnimation();
+          this.breathingText.textContent = 'Ready';
+          if (this.intervalId) {
+            clearTimeout(this.intervalId);
+          }
+        }
+        
+        runPhase() {
+          if (!this.isRunning) return;
+          
+          const phase = this.phases[this.phaseIndex];
+          this.breathingText.textContent = phase.name;
+          
+          this.intervalId = setTimeout(() => {
+            this.phaseIndex = (this.phaseIndex + 1) % this.phases.length;
+            this.runPhase();
+          }, phase.duration * 1000);
+        }
+      }
+      
+      // Initialize when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new BreathingPacer();
+      });
+    </script>
+  </body>
+</html>

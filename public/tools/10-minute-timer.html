@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Distraction-proof 10-minute timer for mindfulness and pause sessions. Full-screen minimalist timer without distractions. No sound option available." />
+  <meta name="keywords" content="10 minute timer, distraction proof timer, mindfulness timer, pause timer, meditation timer, focus timer, minimalist timer" />
+  <meta name="author" content="10 Minutes of Nothing" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nothing10.com/tools/10-minute-timer.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nothing10.com/tools/10-minute-timer.html" />
+  <meta property="og:title" content="Distraction-proof 10-Minute Timer - 10 Minutes of Nothing" />
+  <meta property="og:description" content="Distraction-proof 10-minute timer for mindfulness and pause sessions. Full-screen minimalist timer without distractions." />
+  <meta property="og:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Distraction-proof 10-Minute Timer" />
+  <meta property="og:site_name" content="10 Minutes of Nothing" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://nothing10.com/tools/10-minute-timer.html" />
+  <meta name="twitter:title" content="Distraction-proof 10-Minute Timer - 10 Minutes of Nothing" />
+  <meta name="twitter:description" content="Distraction-proof 10-minute timer for mindfulness and pause sessions. Full-screen minimalist timer without distractions." />
+  <meta name="twitter:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta name="twitter:image:alt" content="Distraction-proof 10-Minute Timer" />
+  
+  <title>Distraction-proof 10-Minute Timer - 10 Minutes of Nothing</title>
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="stylesheet" href="/styles/common.css" />
+  <style>
+    body {
+      overflow: hidden;
+    }
+    
+    #timer-app {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000000;
+      color: #ffffff;
+    }
+    
+    .welcome-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .timer-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    .timer-screen.active {
+      display: flex;
+    }
+    
+    .timer-display {
+      font-size: clamp(4rem, 15vw, 8rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .settings-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: #ffffff;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    
+    .settings-btn:hover {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+    
+    .sound-toggle {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.7;
+    }
+    
+    .sound-toggle input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    
+    .sound-toggle label {
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .description {
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      margin-bottom: 3rem;
+      opacity: 0.8;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer-app">
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+      <h1>Distraction-proof 10-Minute Timer</h1>
+      <p class="description">Full-screen minimalist timer for your pause session. No distractions, just time.</p>
+      
+      <div class="sound-toggle">
+        <input type="checkbox" id="sound-enabled" checked />
+        <label for="sound-enabled">Sound notification when finished</label>
+      </div>
+      
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="startTimer()">Start a 10-minute pause</button>
+        <a href="/tools/" class="btn">Back to Tools</a>
+      </div>
+    </div>
+    
+    <!-- Timer Screen -->
+    <div class="timer-screen" id="timer-screen">
+      <button class="settings-btn" onclick="resetTimer()">Reset</button>
+      <div class="timer-display" id="timer-display">10:00</div>
+    </div>
+  </div>
+
+  <script>
+    let timeLeft = 10 * 60; // 10 minutes in seconds
+    let intervalId = null;
+    let soundEnabled = true;
+    
+    document.getElementById('sound-enabled').addEventListener('change', (e) => {
+      soundEnabled = e.target.checked;
+    });
+    
+    function startTimer() {
+      document.getElementById('welcome-screen').style.display = 'none';
+      document.getElementById('timer-screen').classList.add('active');
+      
+      // Request fullscreen
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {
+          // User denied fullscreen
+        });
+      }
+      
+      intervalId = setInterval(() => {
+        timeLeft--;
+        updateDisplay();
+        
+        if (timeLeft <= 0) {
+          completeTimer();
+        }
+      }, 1000);
+    }
+    
+    function updateDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      document.getElementById('timer-display').textContent = 
+        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    function completeTimer() {
+      clearInterval(intervalId);
+      
+      // Play soft sound if enabled
+      if (soundEnabled) {
+        try {
+          // Create a soft beep sound using Web Audio API
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.frequency.value = 800; // Nice soft frequency
+          oscillator.type = 'sine';
+          
+          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.5);
+        } catch (e) {
+          // Web Audio API not available
+        }
+      }
+      
+      // Show completion message
+      document.getElementById('timer-display').textContent = 'Complete';
+      document.getElementById('timer-display').style.opacity = '0.7';
+      
+      // Auto-reset after 5 seconds
+      setTimeout(() => {
+        resetTimer();
+      }, 5000);
+    }
+    
+    function resetTimer() {
+      clearInterval(intervalId);
+      timeLeft = 10 * 60;
+      document.getElementById('welcome-screen').style.display = 'flex';
+      document.getElementById('timer-screen').classList.remove('active');
+      document.getElementById('timer-display').style.opacity = '1';
+      
+      // Exit fullscreen
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -19,14 +19,38 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nothing10.com/legal/privacy.html</loc>
+    <loc>https://nothing10.com/about.html</loc>
     <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/10-minute-timer.html</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/breathing-pacer.html</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/legal/privacy.html</loc>
+    <lastmod>2025-10-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://nothing10.com/legal/terms.html</loc>
-    <lastmod>2025-10-29</lastmod>
+    <lastmod>2025-10-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
