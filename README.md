@@ -95,9 +95,23 @@ nothing10/
 │   └── style.css          # App styles
 ├── public/                 # Static assets
 │   ├── app/               # PWA manifest & service worker
+│   │   ├── manifest.webmanifest
+│   │   └── sw.js
 │   ├── icons/             # PWA icons (PNG + SVG)
 │   ├── legal/             # Privacy Policy, Terms of Service
-│   └── focus-lock/        # Screen locking instructions
+│   │   ├── privacy.html
+│   │   └── terms.html
+│   ├── focus-lock/        # Screen locking instructions
+│   │   └── index.html
+│   ├── tools/             # Resources & Tools section
+│   │   ├── index.html     # Tools landing page
+│   │   ├── 10-minute-timer.html
+│   │   └── breathing-pacer.html
+│   ├── styles/            # Common styles for static pages
+│   │   └── common.css
+│   ├── about.html         # About page
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── dist/                   # Production build (auto-generated)
 │   ├── app/               # Processed PWA files
 │   └── assets/            # Versioned CSS/JS files with hashes
