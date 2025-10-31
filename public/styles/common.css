@@ -805,12 +805,103 @@ li {
 }
 
 /* End-Prompt Generator specific styles */
+/* Custom Select Dropdown */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 150px;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #333;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding-right: 3rem;
+  position: relative;
+  user-select: none;
+}
+
+.custom-select-trigger::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.custom-select.open .custom-select-trigger::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.custom-select-trigger:hover {
+  border-color: #ffffff;
+}
+
+.custom-select.open .custom-select-trigger {
+  border-color: #ffffff;
+}
+
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #333;
+  border-radius: 16px;
+  padding: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.custom-select.open .custom-select-options {
+  display: block;
+}
+
+.custom-select-option {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.custom-select-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-select-option.selected {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+}
+
+/* Legacy select styles for backward compatibility */
 .select {
   padding: 0.8rem 1.5rem;
   border: 2px solid #333;
   background: transparent;
   color: #ffffff;
-  border-radius: 24px;
+  border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1043,8 +1134,34 @@ li {
   transform: translateX(-50%) translateY(0);
 }
 
+/* End-prompt specific layout adjustments */
+.end-prompt-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.end-prompt-controls .control-group {
+  flex: 0 1 auto;
+}
+
+/* Style select options */
+.select option {
+  background: #000000;
+  color: #ffffff;
+}
+
 /* Mobile responsive for end-prompt */
 @media (max-width: 480px) {
+  .end-prompt-controls {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
   .result-block {
     padding: 1.5rem;
   }

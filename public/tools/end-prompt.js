@@ -14,7 +14,7 @@ let defaultStorage = {
 const ctaTexts = [
   'Generate a gentle prompt',
   'Give me a thought & a tiny step',
-  'I'm ready to close my pause'
+  "I'm ready to close my pause"
 ];
 
 const subheadTexts = [
@@ -35,7 +35,6 @@ async function loadData() {
   try {
     const response = await fetch('/data/end_prompt_pairs.json');
     data = await response.json();
-    console.log('Data loaded:', data);
   } catch (error) {
     console.error('Error loading data:', error);
     showToast('Error loading prompts. Please refresh the page.');
@@ -345,23 +344,67 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Initialize custom select
+function initCustomSelect(selectElement) {
+  const trigger = selectElement.querySelector('.custom-select-trigger');
+  const options = selectElement.querySelectorAll('.custom-select-option');
+  
+  // Set initial value
+  const selectedOption = selectElement.querySelector('.custom-select-option.selected') || options[0];
+  if (selectedOption) {
+    trigger.textContent = selectedOption.textContent;
+  }
+  
+  // Toggle dropdown
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    selectElement.classList.toggle('open');
+  });
+  
+  // Select option
+  options.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+      trigger.textContent = option.textContent;
+      option.parentElement.querySelectorAll('.custom-select-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      option.classList.add('selected');
+      selectElement.classList.remove('open');
+    });
+  });
+  
+  // Close on outside click
+  document.addEventListener('click', () => {
+    selectElement.classList.remove('open');
+  });
+  
+  // Get current value
+  selectElement.getValue = function() {
+    const selected = selectElement.querySelector('.custom-select-option.selected');
+    return selected ? selected.dataset.value : null;
+  };
+}
+
 // Initialize
 async function init() {
   await loadData();
   initRotatingText();
   
-  if (!checkUrlParams()) {
-    const toneSelect = document.getElementById('tone-select');
-    const focusSelect = document.getElementById('focus-select');
-    const generateBtn = document.getElementById('generate-btn');
-    
-    generateBtn.addEventListener('click', () => {
-      const pair = pickPair(toneSelect.value, focusSelect.value);
-      displayPair(pair);
-    });
-  }
+  // Initialize custom selects
+  initCustomSelect(document.getElementById('tone-select'));
+  initCustomSelect(document.getElementById('focus-select'));
   
-  // Other event listeners
+  // Set up all event listeners
+  const toneSelect = document.getElementById('tone-select');
+  const focusSelect = document.getElementById('focus-select');
+  const generateBtn = document.getElementById('generate-btn');
+  
+  generateBtn.addEventListener('click', () => {
+    const pair = pickPair(toneSelect.getValue(), focusSelect.getValue());
+    displayPair(pair);
+  });
+  
   document.getElementById('copy-both-btn').addEventListener('click', copyBoth);
   document.getElementById('copy-thought-btn').addEventListener('click', copyThought);
   document.getElementById('copy-action-btn').addEventListener('click', copyAction);
@@ -370,6 +413,9 @@ async function init() {
   document.getElementById('add-custom-toggle').addEventListener('click', displayAddCustom);
   document.getElementById('save-custom-btn').addEventListener('click', saveCustom);
   document.getElementById('share-btn').addEventListener('click', share);
+  
+  // Check URL params after setting up listeners
+  checkUrlParams();
 }
 
 init();

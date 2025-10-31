@@ -43,29 +43,39 @@
     <p class="subtitle" id="subtitle">Close your pause with one clear thought and one tiny next step.</p>
     
     <div class="content">
-      <div class="controls">
+      <div class="controls end-prompt-controls">
         <div class="control-group">
-          <label for="tone-select">Tone</label>
-          <select id="tone-select" class="select">
-            <option value="auto">Auto</option>
-            <option value="neutral">Neutral</option>
-            <option value="kind">Kind</option>
-            <option value="playful">Playful</option>
-            <option value="scientific">Scientific</option>
-          </select>
+          <label>Tone</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="tone-select">
+              <span class="custom-select-trigger">Auto</span>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="auto">Auto</div>
+                <div class="custom-select-option" data-value="neutral">Neutral</div>
+                <div class="custom-select-option" data-value="kind">Kind</div>
+                <div class="custom-select-option" data-value="playful">Playful</div>
+                <div class="custom-select-option" data-value="scientific">Scientific</div>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div class="control-group">
-          <label for="focus-select">Focus</label>
-          <select id="focus-select" class="select">
-            <option value="any">Any</option>
-            <option value="work">Work</option>
-            <option value="health">Health</option>
-            <option value="mind">Mind</option>
-            <option value="relationships">Relationships</option>
-            <option value="creativity">Creativity</option>
-            <option value="general">General</option>
-          </select>
+          <label>Focus</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="focus-select">
+              <span class="custom-select-trigger">Any</span>
+              <div class="custom-select-options">
+                <div class="custom-select-option" data-value="any">Any</div>
+                <div class="custom-select-option" data-value="work">Work</div>
+                <div class="custom-select-option" data-value="health">Health</div>
+                <div class="custom-select-option" data-value="mind">Mind</div>
+                <div class="custom-select-option" data-value="relationships">Relationships</div>
+                <div class="custom-select-option" data-value="creativity">Creativity</div>
+                <div class="custom-select-option" data-value="general">General</div>
+              </div>
+            </div>
+          </div>
         </div>
         
         <button id="generate-btn" class="btn btn-primary">Generate a gentle prompt</button>
