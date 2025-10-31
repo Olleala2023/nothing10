@@ -1,0 +1,168 @@
+{
+  "version": "1.0",
+  "updated": "2025-10-31",
+  "tones": [
+    "neutral",
+    "kind",
+    "playful",
+    "scientific"
+  ],
+  "focuses": [
+    "work",
+    "health",
+    "mind",
+    "relationships",
+    "creativity",
+    "general"
+  ],
+  "items": [
+    {
+      "id": "gen-01",
+      "focus": "general",
+      "tone": "neutral",
+      "thought": "What matters next, really?",
+      "action": "Do the first step that takes < 2 minutes."
+    },
+    {
+      "id": "wrk-01",
+      "focus": "work",
+      "tone": "scientific",
+      "thought": "Which task removes more tasks if done?",
+      "action": "Block 20 minutes for just the first step."
+    },
+    {
+      "id": "wrk-02",
+      "focus": "work",
+      "tone": "neutral",
+      "thought": "What can I safely ignore for the next hour?",
+      "action": "Snooze one notification source."
+    },
+    {
+      "id": "gen-02",
+      "focus": "general",
+      "tone": "neutral",
+      "thought": "What will future-me thank me for?",
+      "action": "Set a 15-minute timer and begin."
+    },
+    {
+      "id": "mind-01",
+      "focus": "mind",
+      "tone": "kind",
+      "thought": "Which worry got quieter?",
+      "action": "Write one sentence naming it (no fixing)."
+    },
+    {
+      "id": "mind-02",
+      "focus": "mind",
+      "tone": "kind",
+      "thought": "What do I want to feel at day's end?",
+      "action": "Pick one tiny step aligned with that feeling."
+    },
+    {
+      "id": "hlth-01",
+      "focus": "health",
+      "tone": "scientific",
+      "thought": "Where is there tension in my body?",
+      "action": "Do 3 slow box breaths (4-4-4-4)."
+    },
+    {
+      "id": "hlth-02",
+      "focus": "health",
+      "tone": "neutral",
+      "thought": "Am I hungry or just stimulated?",
+      "action": "Drink a glass of water."
+    },
+    {
+      "id": "mind-03",
+      "focus": "mind",
+      "tone": "kind",
+      "thought": "What's already enough right now?",
+      "action": "Take three slow breaths and proceed."
+    },
+    {
+      "id": "wrk-03",
+      "focus": "work",
+      "tone": "neutral",
+      "thought": "Which tab can I close?",
+      "action": "Close one tab/app you won't use now."
+    },
+    {
+      "id": "rel-01",
+      "focus": "relationships",
+      "tone": "kind",
+      "thought": "Who could use a tiny sign of care?",
+      "action": "Send a one-line "thinking of you" message."
+    },
+    {
+      "id": "rel-02",
+      "focus": "relationships",
+      "tone": "neutral",
+      "thought": "What's unsaid that matters?",
+      "action": "Draft the first sentence you'd like to say."
+    },
+    {
+      "id": "rel-03",
+      "focus": "relationships",
+      "tone": "kind",
+      "thought": "Where can I listen 10% more?",
+      "action": "Prepare one open question for your next chat."
+    },
+    {
+      "id": "crt-01",
+      "focus": "creativity",
+      "tone": "playful",
+      "thought": "What color/shape/word stayed with me?",
+      "action": "Capture it in a note or tiny sketch."
+    },
+    {
+      "id": "crt-02",
+      "focus": "creativity",
+      "tone": "playful",
+      "thought": "Where is the playful path here?",
+      "action": "Try a 2-minute rough draft or variant."
+    },
+    {
+      "id": "crt-03",
+      "focus": "creativity",
+      "tone": "playful",
+      "thought": "What constraint could make this fun?",
+      "action": "Halve the scope for the next attempt."
+    },
+    {
+      "id": "crt-04",
+      "focus": "creativity",
+      "tone": "playful",
+      "thought": "What will I ship imperfectly today?",
+      "action": "Share a v0 with one trusted person."
+    },
+    {
+      "id": "gen-03",
+      "focus": "general",
+      "tone": "neutral",
+      "thought": "What can I let go of?",
+      "action": "Delete or archive one item."
+    },
+    {
+      "id": "wrk-04",
+      "focus": "work",
+      "tone": "scientific",
+      "thought": "Which small win is closest?",
+      "action": "Rename/create a file and add its skeleton."
+    },
+    {
+      "id": "hlth-03",
+      "focus": "health",
+      "tone": "kind",
+      "thought": "What would make the next hour 5% kinder?",
+      "action": "Stand and stretch for 30 seconds."
+    },
+    {
+      "id": "wrk-05",
+      "focus": "work",
+      "tone": "scientific",
+      "thought": "What is the first question I need to answer?",
+      "action": "Write a one-line plan for the next step."
+    }
+  ]
+}
+

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Close your 10-minute pause with one clear thought and one tiny next step. Privacy-first, offline, no accounts." />
+  <meta name="keywords" content="end prompt generator, mindfulness closing, pause reflection, next step generator, gentle reminder" />
+  <meta name="author" content="10 Minutes of Nothing" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nothing10.com/tools/end-prompt.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nothing10.com/tools/end-prompt.html" />
+  <meta property="og:title" content="One-Thought End-Prompt Generator — 10 Minutes of Nothing" />
+  <meta property="og:description" content="Close your 10-minute pause with one clear thought and one tiny next step. Privacy-first, offline, no accounts." />
+  <meta property="og:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="One-Thought End-Prompt Generator — 10 Minutes of Nothing" />
+  <meta property="og:site_name" content="10 Minutes of Nothing" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://nothing10.com/tools/end-prompt.html" />
+  <meta name="twitter:title" content="One-Thought End-Prompt Generator — 10 Minutes of Nothing" />
+  <meta name="twitter:description" content="Close your 10-minute pause with one clear thought and one tiny next step. Privacy-first, offline, no accounts." />
+  <meta name="twitter:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta name="twitter:image:alt" content="One-Thought End-Prompt Generator — 10 Minutes of Nothing" />
+  
+  <title>One-Thought End-Prompt Generator — 10 Minutes of Nothing</title>
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="stylesheet" href="/styles/common.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>One Thought, One Tiny Action</h1>
+    <p class="subtitle" id="subtitle">Close your pause with one clear thought and one tiny next step.</p>
+    
+    <div class="content">
+      <div class="controls">
+        <div class="control-group">
+          <label for="tone-select">Tone</label>
+          <select id="tone-select" class="select">
+            <option value="auto">Auto</option>
+            <option value="neutral">Neutral</option>
+            <option value="kind">Kind</option>
+            <option value="playful">Playful</option>
+            <option value="scientific">Scientific</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="focus-select">Focus</label>
+          <select id="focus-select" class="select">
+            <option value="any">Any</option>
+            <option value="work">Work</option>
+            <option value="health">Health</option>
+            <option value="mind">Mind</option>
+            <option value="relationships">Relationships</option>
+            <option value="creativity">Creativity</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+        
+        <button id="generate-btn" class="btn btn-primary">Generate a gentle prompt</button>
+      </div>
+      
+      <div class="result-block" id="result-block" aria-live="polite" style="display: none;">
+        <div class="result-item">
+          <div class="result-label">One thought:</div>
+          <div class="result-text" id="thought-text"></div>
+        </div>
+        
+        <div class="result-item">
+          <div class="result-label">One tiny action:</div>
+          <div class="result-text" id="action-text"></div>
+        </div>
+        
+        <div class="result-actions">
+          <button class="btn-small" id="copy-both-btn">Copy both</button>
+          <button class="btn-small" id="copy-thought-btn">Copy thought</button>
+          <button class="btn-small" id="copy-action-btn">Copy action</button>
+          <button class="btn-small btn-favorite" id="favorite-btn">☆ Favorite</button>
+        </div>
+      </div>
+      
+      <div class="secondary-section">
+        <div class="history-section">
+          <button class="btn-toggle" id="history-toggle">History (10)</button>
+          <div id="history-dropdown" class="dropdown" style="display: none;"></div>
+        </div>
+        
+        <div class="add-custom-section">
+          <button class="btn-toggle" id="add-custom-toggle">Add your own</button>
+          <div id="add-custom-form" class="custom-form" style="display: none;">
+            <input type="text" id="custom-thought" placeholder="Thought..." />
+            <input type="text" id="custom-action" placeholder="Action..." />
+            <select id="custom-tone-select" class="select-small">
+              <option value="neutral">Neutral</option>
+              <option value="kind">Kind</option>
+              <option value="playful">Playful</option>
+              <option value="scientific">Scientific</option>
+            </select>
+            <select id="custom-focus-select" class="select-small">
+              <option value="work">Work</option>
+              <option value="health">Health</option>
+              <option value="mind">Mind</option>
+              <option value="relationships">Relationships</option>
+              <option value="creativity">Creativity</option>
+              <option value="general">General</option>
+            </select>
+            <button class="btn-small btn-primary" id="save-custom-btn">Save</button>
+          </div>
+        </div>
+        
+        <div class="share-section">
+          <button class="btn-small" id="share-btn">Share link</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cta-buttons">
+      <a href="/app" class="btn btn-primary">Launch App</a>
+      <a href="/tools/" class="btn">Back to Tools</a>
+      <a href="/" class="btn">Back to Home</a>
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/about.html">About</a>
+        <a href="/legal/privacy.html">Privacy Policy</a>
+        <a href="/legal/terms.html">Terms of Service</a>
+        <a href="mailto:contact@nothing10.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+  
+  <script type="module" src="/tools/end-prompt.js"></script>
+</body>
+</html>
+
