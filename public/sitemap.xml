@@ -49,6 +49,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nothing10.com/tools/distraction-audit.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/10m-reset-checklist.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/post-pause-checklist.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nothing10.com/tools/sleep-winddown.html</loc>
+    <lastmod>2025-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nothing10.com/legal/privacy.html</loc>
     <lastmod>2025-10-30</lastmod>
     <changefreq>yearly</changefreq>

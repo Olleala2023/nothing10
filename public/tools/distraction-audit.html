@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Micro-Distraction Audit: A one-minute sweep to reduce small frictions before your pause. Privacy-first, local checkboxes, no accounts." />
+  <meta name="keywords" content="distraction audit, pre-pause checklist, focus preparation, digital declutter, productivity checklist, mindfulness preparation" />
+  <meta name="author" content="10 Minutes of Nothing" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#000000" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nothing10.com/tools/distraction-audit.html" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nothing10.com/tools/distraction-audit.html" />
+  <meta property="og:title" content="Micro-Distraction Audit — 10 Minutes of Nothing" />
+  <meta property="og:description" content="A one-minute sweep to reduce small frictions before your pause. Privacy-first, local checkboxes, no accounts." />
+  <meta property="og:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Micro-Distraction Audit — 10 Minutes of Nothing" />
+  <meta property="og:site_name" content="10 Minutes of Nothing" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://nothing10.com/tools/distraction-audit.html" />
+  <meta name="twitter:title" content="Micro-Distraction Audit — 10 Minutes of Nothing" />
+  <meta name="twitter:description" content="A one-minute sweep to reduce small frictions before your pause. Privacy-first, local checkboxes, no accounts." />
+  <meta name="twitter:image" content="https://nothing10.com/icons/icon-512.png" />
+  <meta name="twitter:image:alt" content="Micro-Distraction Audit — 10 Minutes of Nothing" />
+  
+  <title>Micro-Distraction Audit — 10 Minutes of Nothing</title>
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="stylesheet" href="/styles/common.css" />
+  
+  <!-- JSON-LD HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Micro-Distraction Audit — Quick Checklist",
+    "description": "A one-minute sweep to reduce small frictions before your pause. Tick off what helps; skip the rest.",
+    "totalTime": "PT60S",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "text": "Mute OS notifications for 15–60 minutes."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "text": "Close one tab/app you won't use now."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "text": "Phone → Do Not Disturb / silent."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "text": "Clear one object on your desk."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "text": "Open the 10-Minute Timer."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 6,
+        "text": "Optional: open Breathing Pacer (6/min)."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 7,
+        "text": "Choose sound: soft chime or no sound."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 8,
+        "text": "Pick where you'll sit/stand (no scrolling)."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 9,
+        "text": "Decide your post-pause tiny step (one line)."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 10,
+        "text": "Breathe out once—then start."
+      }
+    ],
+    "tool": [
+      {
+        "@type": "HowToTool",
+        "name": "10 Minutes of Nothing"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Micro-Distraction Audit — Quick Checklist</h1>
+    <p class="subtitle">A one-minute sweep to reduce small frictions before your pause. Tick off what helps; skip the rest.</p>
+    
+    <div class="content">
+      <div class="checklist-wrapper">
+        <div class="duration-badge">60 seconds</div>
+        
+        <div class="checklist-steps" id="checklist-steps" aria-live="polite">
+          <!-- Steps will be inserted here -->
+        </div>
+        
+        <div class="checklist-actions">
+          <button class="btn-small" id="copy-txt-btn">Copy as .txt</button>
+          <button class="btn-small" id="copy-md-btn">Copy as .md</button>
+          <button class="btn-small" id="share-btn">Share link</button>
+          <button class="btn-small" id="reset-btn">Reset all</button>
+        </div>
+        
+        <div class="checklist-progress" id="checklist-progress" style="display: none;">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-text" id="progress-text">0 of 10 completed</div>
+        </div>
+      </div>
+      
+      <div class="related-tools-section">
+        <h2>Related Tools</h2>
+        <div class="tools-grid">
+          <a href="/tools/10-minute-timer.html" class="tool-card">
+            <div class="tool-card-title">Distraction-proof 10-Minute Timer</div>
+            <div class="tool-card-description">Full-screen timer without distractions</div>
+          </a>
+          <a href="/tools/end-prompt.html" class="tool-card">
+            <div class="tool-card-title">End-Prompt Generator</div>
+            <div class="tool-card-description">One thought & one tiny action</div>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cta-buttons">
+      <a href="/app" class="btn btn-primary">Launch App</a>
+      <a href="/tools/" class="btn">Back to Tools</a>
+      <a href="/" class="btn">Back to Home</a>
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/app">Launch App</a>
+        <a href="/focus-lock/index.html">Focus Lock</a>
+        <a href="/about.html">About</a>
+        <a href="/legal/privacy.html">Privacy Policy</a>
+        <a href="/legal/terms.html">Terms of Service</a>
+        <a href="mailto:contact@nothing10.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+  
+  <script type="module" src="/tools/distraction-audit.js"></script>
+</body>
+</html>
+
