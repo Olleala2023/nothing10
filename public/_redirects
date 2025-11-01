@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects and rewrites
+# SPA routing for /app
+# Vite builds to /src/app/index.html, redirect to it
+/app/*  /src/app/index.html  200
+
+# Redirect /app without trailing slash
+/app  /src/app/index.html  301
+
