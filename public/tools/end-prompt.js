@@ -113,12 +113,31 @@ function pickPair(selectedTone, selectedFocus) {
 
 // Display pair
 function displayPair(pair) {
-  if (!pair) return;
+  if (!pair) {
+    console.error('displayPair called with null/undefined pair');
+    return;
+  }
   
   currentPair = pair;
-  document.getElementById('thought-text').textContent = pair.thought;
-  document.getElementById('action-text').textContent = pair.action;
-  document.getElementById('result-block').style.display = 'block';
+  const thoughtText = document.getElementById('thought-text');
+  const actionText = document.getElementById('action-text');
+  const resultBlock = document.getElementById('result-block');
+  
+  if (!thoughtText || !actionText || !resultBlock) {
+    console.error('Required elements not found');
+    return;
+  }
+  
+  thoughtText.textContent = pair.thought;
+  actionText.textContent = pair.action;
+  
+  // Show the block - remove inline style to reveal it
+  resultBlock.removeAttribute('style');
+  // Ensure it's visible
+  resultBlock.style.display = 'block';
+  
+  // Scroll into view if needed
+  resultBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   
   // Update favorite button
   const storage = getStorage();
@@ -402,6 +421,10 @@ async function init() {
   
   generateBtn.addEventListener('click', () => {
     const pair = pickPair(toneSelect.getValue(), focusSelect.getValue());
+    if (!pair) {
+      showToast('No prompts available for selected filters. Try different options.');
+      return;
+    }
     displayPair(pair);
   });
   
