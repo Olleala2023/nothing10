@@ -110,6 +110,7 @@ nothing10/
 │   ├── styles/            # Common styles for static pages
 │   │   └── common.css
 │   ├── about.html         # About page
+│   ├── why-10-minutes.html # Why 10 Minutes page
 │   ├── robots.txt
 │   └── sitemap.xml
 ├── dist/                   # Production build (auto-generated)

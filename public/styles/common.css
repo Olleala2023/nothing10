@@ -23,6 +23,7 @@ body {
 .container {
   max-width: 600px;
   width: 100%;
+  position: relative;
 }
 
 h1 {
@@ -69,6 +70,54 @@ h1 {
   flex-direction: column;
   gap: 1.5rem;
   margin: 3rem 0;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.btn-compact {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  min-height: 42px;
+}
+
+.btn-nav {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  min-height: 42px;
+}
+
+.btn-compact.btn-primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.btn-compact.btn-primary::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.btn-compact.btn-primary:hover {
+  background: #f0f0f0;
+  color: #000000;
+}
+
+.checklists-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #333;
+}
+
+.checklists-section h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 .btn {
@@ -502,6 +551,30 @@ li {
   opacity: 1;
 }
 
+.back-link-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  text-decoration: none;
+  color: #ffffff;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.back-link-mobile:hover {
+  opacity: 1;
+}
+
 .controls {
   margin: 2rem 0;
   display: flex;
@@ -794,6 +867,7 @@ body:has(.breathing-container) .cta-buttons .btn-primary {
 @media (max-width: 480px) {
   body {
     padding: 1rem;
+    position: relative;
   }
   
   .cta-buttons {
@@ -805,7 +879,50 @@ body:has(.breathing-container) .cta-buttons .btn-primary {
   }
   
   .content {
-    text-align: center;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .content ul,
+  .content ol {
+    margin-left: 1.5rem;
+    margin-right: 0;
+    padding-left: 0.5rem;
+  }
+  
+  .content li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .back-link-mobile {
+    display: block;
+  }
+  
+  main h1 {
+    margin-top: 3rem;
+  }
+  
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .checklists-section .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .btn-compact {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+  
+  .btn-nav {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    min-height: 40px;
   }
   
   .pattern-selector {
@@ -1514,6 +1631,124 @@ body:has(.breathing-container) .cta-buttons .btn-primary {
   line-height: 1.6;
 }
 
+/* Research page styles */
+.related {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #333;
+}
+
+.related h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+}
+
+.content a {
+  color: #4a90e2;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.content a:hover {
+  color: #7b68ee;
+}
+
+.content a:visited {
+  color: #6b5b95;
+}
+
+/* Home page specific styles */
+body.home-page {
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+body.home-page .container {
+  margin-top: 0;
+}
+
+body.home-page h1 {
+  margin-bottom: 1rem;
+}
+
+.subtitle-small {
+  font-size: 1rem !important;
+  margin-top: 1rem;
+  opacity: 0.7 !important;
+}
+
+.contact {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.contact a:hover {
+  opacity: 1;
+}
+
+/* Lead text (lede) */
+.lede {
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Cards grid */
+.cards {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.cards a {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cards a:hover,
+.cards a:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.cards h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.cards p {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 /* Mobile responsive for checklist */
 @media (max-width: 480px) {
   .checklist-wrapper {
@@ -1532,5 +1767,34 @@ body:has(.breathing-container) .cta-buttons .btn-primary {
   
   .tool-card {
     padding: 1.5rem;
+  }
+  
+  .home-page .container {
+    margin-top: 1rem;
+  }
+  
+  /* Cards mobile adjustments */
+  .cards {
+    gap: 0.875rem;
+  }
+  
+  .cards a {
+    padding: 1rem 1.25rem;
+  }
+  
+  .cards h3 {
+    font-size: 1rem;
+  }
+  
+  .cards p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive: 2 columns on larger screens */
+@media (min-width: 720px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 }
