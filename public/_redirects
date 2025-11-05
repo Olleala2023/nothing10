@@ -6,3 +6,6 @@
 # Redirect /app without trailing slash
 /app  /src/app/index.html  301
 
+# Redirect old why-10-minutes.html to new research location
+/why-10-minutes.html  /research/why-10-minutes.html  301
+

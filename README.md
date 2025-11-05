@@ -107,10 +107,15 @@ nothing10/
 │   │   ├── index.html     # Tools landing page
 │   │   ├── 10-minute-timer.html
 │   │   └── breathing-pacer.html
+│   ├── research/          # Research articles section
+│   │   ├── index.html     # Research landing page
+│   │   ├── why-10-minutes.html
+│   │   ├── breathing-6bpm.html
+│   │   ├── micro-breaks-evidence.html
+│   │   └── attention-residue.html
 │   ├── styles/            # Common styles for static pages
 │   │   └── common.css
 │   ├── about.html         # About page
-│   ├── why-10-minutes.html # Why 10 Minutes page
 │   ├── robots.txt
 │   └── sitemap.xml
 ├── dist/                   # Production build (auto-generated)
