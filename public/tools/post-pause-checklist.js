@@ -54,23 +54,42 @@ function saveState() {
 // Initialize checklist
 function initChecklist() {
   const container = document.getElementById('checklist-steps');
-  container.innerHTML = '';
   
-  checklistData.steps.forEach((step, index) => {
-    const stepItem = document.createElement('div');
-    stepItem.className = 'checklist-item';
-    stepItem.innerHTML = `
-      <label class="checklist-label">
-        <input type="checkbox" data-index="${index}" ${checkedState[index] ? 'checked' : ''} />
-        <span class="checklist-text ${step.required ? 'required' : 'optional'}">${step.text}</span>
-      </label>
-    `;
-    container.appendChild(stepItem);
-  });
+  // Check if static content already exists (for SEO)
+  const existingItems = container.querySelectorAll('.checklist-item');
+  
+  if (existingItems.length === 0) {
+    // Fallback: create items if static content is missing
+    container.innerHTML = '';
+    checklistData.steps.forEach((step, index) => {
+      const stepItem = document.createElement('div');
+      stepItem.className = 'checklist-item';
+      stepItem.innerHTML = `
+        <label class="checklist-label">
+          <input type="checkbox" data-index="${index}" ${checkedState[index] ? 'checked' : ''} />
+          <span class="checklist-text ${step.required ? 'required' : 'optional'}">${step.text}</span>
+        </label>
+      `;
+      container.appendChild(stepItem);
+    });
+  } else {
+    // Update existing checkboxes with saved state
+    existingItems.forEach((item, index) => {
+      const checkbox = item.querySelector('input[type="checkbox"]');
+      if (checkbox) {
+        checkbox.checked = checkedState[index] || false;
+        checkbox.dataset.index = index;
+      }
+    });
+  }
   
   // Add event listeners
   document.querySelectorAll('#checklist-steps input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener('change', (e) => {
+    // Remove existing listeners by cloning
+    const newCheckbox = checkbox.cloneNode(true);
+    checkbox.parentNode.replaceChild(newCheckbox, checkbox);
+    
+    newCheckbox.addEventListener('change', (e) => {
       const index = parseInt(e.target.dataset.index);
       checkedState[index] = e.target.checked;
       saveState();

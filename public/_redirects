@@ -1,11 +1,24 @@
 # Cloudflare Pages redirects and rewrites
 # SPA routing for /app
-# Vite builds to /src/app/index.html, redirect to it
-/app/*  /src/app/index.html  200
+# Redirect /app without trailing slash to /app/ (canonical URL)
+/app  /app/  301
 
-# Redirect /app without trailing slash
-/app  /src/app/index.html  301
+# All /app/* routes serve the SPA
+/app/*  /src/app/index.html  200
 
 # Redirect old why-10-minutes.html to new research location
 /why-10-minutes.html  /research/why-10-minutes.html  301
+
+# Redirect tools pages without .html to .html versions (canonical URLs)
+/tools/end-prompt  /tools/end-prompt.html  301
+/tools/10-minute-timer  /tools/10-minute-timer.html  301
+/tools/breathing-pacer  /tools/breathing-pacer.html  301
+/tools/distraction-audit  /tools/distraction-audit.html  301
+/tools/10m-reset-checklist  /tools/10m-reset-checklist.html  301
+/tools/post-pause-checklist  /tools/post-pause-checklist.html  301
+/tools/sleep-winddown  /tools/sleep-winddown.html  301
+
+# Redirect legal pages without .html to .html versions (canonical URLs)
+/legal/terms  /legal/terms.html  301
+/legal/privacy  /legal/privacy.html  301
 
