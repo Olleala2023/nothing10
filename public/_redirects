@@ -4,7 +4,8 @@
 /app  /app/  301
 
 # All /app/* routes serve the SPA
-/app/*  /src/app/index.html  200
+/app/  /app/index.html  200
+/app/*  /app/index.html  200
 
 # Redirect old why-10-minutes.html to new research location
 /why-10-minutes.html  /research/why-10-minutes.html  301
