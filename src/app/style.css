@@ -215,6 +215,7 @@ body {
 .mode-descriptions {
   margin-top: 1rem;
   text-align: center;
+  min-height: 2rem;
 }
 
 .mode-desc {
@@ -222,10 +223,17 @@ body {
   opacity: 0.7;
   margin-bottom: 0.5rem;
   display: none;
+  transition: opacity 0.3s ease;
 }
 
 .mode-desc.active {
   display: block;
+  opacity: 0.7;
+}
+
+.mode-desc.hover {
+  display: block;
+  opacity: 0.8;
 }
 
 .custom-duration {

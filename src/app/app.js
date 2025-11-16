@@ -26,6 +26,11 @@ class NothingTimer {
     this.showPhrase();
     this.updateStatsDisplay();
     
+    // Show description for default/active mode if not loaded from settings
+    if (!localStorage.getItem('displayMode')) {
+      this.selectMode(this.currentMode);
+    }
+    
     // Register service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/app/sw.js');
@@ -84,6 +89,23 @@ class NothingTimer {
     this.modeBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         this.selectMode(e.target.dataset.mode);
+      });
+      
+      // Show description on hover
+      btn.addEventListener('mouseenter', (e) => {
+        const mode = e.target.dataset.mode;
+        const desc = document.querySelector(`.mode-desc[data-mode="${mode}"]`);
+        if (desc && !desc.classList.contains('active')) {
+          desc.classList.add('hover');
+        }
+      });
+      
+      btn.addEventListener('mouseleave', (e) => {
+        const mode = e.target.dataset.mode;
+        const desc = document.querySelector(`.mode-desc[data-mode="${mode}"]`);
+        if (desc && !desc.classList.contains('active')) {
+          desc.classList.remove('hover');
+        }
       });
     });
 
@@ -206,14 +228,20 @@ class NothingTimer {
 
   selectMode(mode) {
     this.modeBtns.forEach(btn => btn.classList.remove('active'));
-    document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+    const activeBtn = document.querySelector(`.mode-btn[data-mode="${mode}"]`);
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+    }
     this.currentMode = mode;
     
     // Show description for selected mode
     document.querySelectorAll('.mode-desc').forEach(desc => {
-      desc.classList.remove('active');
+      desc.classList.remove('active', 'hover');
     });
-    document.querySelector(`.mode-desc[data-mode="${mode}"]`).classList.add('active');
+    const activeDesc = document.querySelector(`.mode-desc[data-mode="${mode}"]`);
+    if (activeDesc) {
+      activeDesc.classList.add('active');
+    }
   }
 
   updateStartButton() {
