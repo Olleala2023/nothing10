@@ -1,5 +1,8 @@
 # Cloudflare Pages redirects and rewrites
+
+# ========================================
 # SPA routing for /app
+# ========================================
 # Redirect /app without trailing slash to /app/ (canonical URL)
 /app  /app/  301
 
@@ -7,10 +10,24 @@
 /app/  /app/index.html  200
 /app/*  /app/index.html  200
 
-# Redirect old why-10-minutes.html to new research location
-/why-10-minutes.html  /research/why-10-minutes.html  301
+# ========================================
+# Explicit rules for .html pages (prevent redirect conflicts)
+# These ensure .html URLs are served directly without redirects
+# ========================================
+/tools/10m-reset-checklist.html  /tools/10m-reset-checklist.html  200
+/tools/breathing-pacer.html  /tools/breathing-pacer.html  200
+/tools/sleep-winddown.html  /tools/sleep-winddown.html  200
+/tools/end-prompt.html  /tools/end-prompt.html  200
+/tools/10-minute-timer.html  /tools/10-minute-timer.html  200
+/tools/distraction-audit.html  /tools/distraction-audit.html  200
+/tools/post-pause-checklist.html  /tools/post-pause-checklist.html  200
+/legal/privacy.html  /legal/privacy.html  200
+/legal/terms.html  /legal/terms.html  200
 
-# Redirect tools pages without .html to .html versions (canonical URLs)
+# ========================================
+# Redirects from non-.html to .html (canonical URLs)
+# These redirect versions without .html to versions with .html
+# ========================================
 /tools/end-prompt  /tools/end-prompt.html  301
 /tools/10-minute-timer  /tools/10-minute-timer.html  301
 /tools/breathing-pacer  /tools/breathing-pacer.html  301
@@ -19,7 +36,12 @@
 /tools/post-pause-checklist  /tools/post-pause-checklist.html  301
 /tools/sleep-winddown  /tools/sleep-winddown.html  301
 
-# Redirect legal pages without .html to .html versions (canonical URLs)
 /legal/terms  /legal/terms.html  301
 /legal/privacy  /legal/privacy.html  301
+
+# ========================================
+# Legacy redirects
+# ========================================
+# Redirect old why-10-minutes.html to new research location
+/why-10-minutes.html  /research/why-10-minutes.html  301
 
