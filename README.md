@@ -113,6 +113,8 @@ nothing10/
 │   │   ├── breathing-6bpm.html
 │   │   ├── micro-breaks-evidence.html
 │   │   └── attention-residue.html
+│   ├── modes/             # Display modes documentation
+│   │   └── index.html
 │   ├── styles/            # Common styles for static pages
 │   │   └── common.css
 │   ├── about.html         # About page
