@@ -11,20 +11,21 @@
 /app/*  /app/index.html  200
 
 # ========================================
-# ВРЕМЕННО ЗАКОММЕНТИРОВАНО - для проверки
+# Explicit rules for .html pages (prevent redirect conflicts)
+# These ensure .html URLs are served directly without redirects
+# КРИТИЧНО: предотвращает дефолтные редиректы Cloudflare Pages
 # ========================================
-
-# # Explicit rules for .html pages (prevent redirect conflicts)
-# # These ensure .html URLs are served directly without redirects
-# /tools/10m-reset-checklist.html  /tools/10m-reset-checklist.html  200
-# /tools/breathing-pacer.html  /tools/breathing-pacer.html  200
-# /tools/sleep-winddown.html  /tools/sleep-winddown.html  200
-# /tools/end-prompt.html  /tools/end-prompt.html  200
-# /tools/10-minute-timer.html  /tools/10-minute-timer.html  200
-# /tools/distraction-audit.html  /tools/distraction-audit.html  200
-# /tools/post-pause-checklist.html  /tools/post-pause-checklist.html  200
-# /legal/privacy.html  /legal/privacy.html  200
-# /legal/terms.html  /legal/terms.html  200
+/tools/10m-reset-checklist.html  /tools/10m-reset-checklist.html  200
+/tools/breathing-pacer.html  /tools/breathing-pacer.html  200
+/tools/sleep-winddown.html  /tools/sleep-winddown.html  200
+/tools/end-prompt.html  /tools/end-prompt.html  200
+/tools/10-minute-timer.html  /tools/10-minute-timer.html  200
+/tools/distraction-audit.html  /tools/distraction-audit.html  200
+/tools/post-pause-checklist.html  /tools/post-pause-checklist.html  200
+/legal/privacy.html  /legal/privacy.html  200
+/legal/terms.html  /legal/terms.html  200
+/about.html  /about.html  200
+/focus-lock/index.html  /focus-lock/index.html  200
 
 # # Redirects from non-.html to .html (canonical URLs)
 # # These redirect versions without .html to versions with .html
