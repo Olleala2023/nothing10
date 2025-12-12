@@ -215,24 +215,30 @@ body {
 .mode-descriptions {
   margin-top: 1rem;
   text-align: center;
-  min-height: 2rem;
+  height: 3rem;
+  position: relative;
 }
 
 .mode-desc {
   font-size: 0.9rem;
-  opacity: 0.7;
   margin-bottom: 0.5rem;
-  display: none;
-  transition: opacity 0.3s ease;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.mode-desc.active {
-  display: block;
+.mode-desc.active,
+.mode-desc.hover {
   opacity: 0.7;
+  visibility: visible;
 }
 
 .mode-desc.hover {
-  display: block;
   opacity: 0.8;
 }
 
