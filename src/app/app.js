@@ -91,11 +91,17 @@ class NothingTimer {
         this.selectMode(e.target.dataset.mode);
       });
       
-      // Show description on hover
+      // Show description on hover (hide active one if hovering non-active button)
       btn.addEventListener('mouseenter', (e) => {
         const mode = e.target.dataset.mode;
         const desc = document.querySelector(`.mode-desc[data-mode="${mode}"]`);
         if (desc && !desc.classList.contains('active')) {
+          // Hide active description
+          const activeDesc = document.querySelector('.mode-desc.active');
+          if (activeDesc) {
+            activeDesc.classList.add('hidden-on-hover');
+          }
+          // Show hover description
           desc.classList.add('hover');
         }
       });
@@ -104,7 +110,13 @@ class NothingTimer {
         const mode = e.target.dataset.mode;
         const desc = document.querySelector(`.mode-desc[data-mode="${mode}"]`);
         if (desc && !desc.classList.contains('active')) {
+          // Hide hover description
           desc.classList.remove('hover');
+          // Show active description again
+          const activeDesc = document.querySelector('.mode-desc.active');
+          if (activeDesc) {
+            activeDesc.classList.remove('hidden-on-hover');
+          }
         }
       });
     });
