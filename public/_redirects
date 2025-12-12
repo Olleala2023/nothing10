@@ -1,17 +1,7 @@
 # Cloudflare Pages redirects and rewrites
 
 # ========================================
-# SPA routing for /app (КРИТИЧНО - обязательно для работы PWA)
-# ========================================
-# Redirect /app without trailing slash to /app/ (canonical URL)
-/app  /app/  301
-
-# All /app/* routes serve the SPA
-/app/  /app/index.html  200
-/app/*  /app/index.html  200
-
-# ========================================
-# Explicit rules for .html pages (prevent redirect conflicts)
+# Explicit rules for .html pages (MUST BE FIRST to prevent default redirects)
 # These ensure .html URLs are served directly without redirects
 # КРИТИЧНО: предотвращает дефолтные редиректы Cloudflare Pages
 # ========================================
@@ -26,6 +16,16 @@
 /legal/terms.html  /legal/terms.html  200
 /about.html  /about.html  200
 /focus-lock/index.html  /focus-lock/index.html  200
+
+# ========================================
+# SPA routing for /app (КРИТИЧНО - обязательно для работы PWA)
+# ========================================
+# Redirect /app without trailing slash to /app/ (canonical URL)
+/app  /app/  301
+
+# All /app/* routes serve the SPA
+/app/  /app/index.html  200
+/app/*  /app/index.html  200
 
 # # Redirects from non-.html to .html (canonical URLs)
 # # These redirect versions without .html to versions with .html
