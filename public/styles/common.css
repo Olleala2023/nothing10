@@ -991,6 +991,11 @@ body:has(.breathing-container) .cta-buttons .btn-primary {
   .tool-card-title {
     font-size: 1.3rem;
   }
+  
+  .hero-section .subtitle-small,
+  .hero-section .subtitle.subtitle-small {
+    display: none !important;
+  }
 }
 
 /* End-Prompt Generator specific styles */
@@ -1696,8 +1701,9 @@ body.home-page h1 {
     min-height: 100dvh;
   }
   
-  .subtitle-small {
-    display: none;
+  .hero-section .subtitle-small,
+  .hero-section .subtitle.subtitle-small {
+    display: none !important;
   }
 }
 
