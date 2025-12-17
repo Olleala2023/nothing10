@@ -1,5 +1,32 @@
+# robots.txt для nothing10.com
+# Оптимизирован для лучшей индексации поисковыми системами
+
 User-agent: *
 Allow: /
+
+# Запрещаем индексацию служебных файлов Cloudflare
 Disallow: /cdn-cgi/
 
+# Запрещаем индексацию данных и служебных файлов
+Disallow: /data/
+Disallow: /app/manifest.webmanifest
+Disallow: /app/sw.js
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.json$
+Disallow: /vite.svg
+Disallow: /_redirects
+Disallow: /.htaccess
+
+# Разрешаем индексацию всех HTML страниц и основных разделов
+Allow: /app/
+Allow: /tools/
+Allow: /research/
+Allow: /modes/
+Allow: /focus-lock/
+Allow: /legal/
+Allow: /about
+Allow: /
+
+# Указываем расположение sitemap (важно для SEO)
 Sitemap: https://nothing10.com/sitemap.xml
