@@ -11,9 +11,6 @@ Disallow: /cdn-cgi/
 Disallow: /data/
 Disallow: /app/manifest.webmanifest
 Disallow: /app/sw.js
-Disallow: /*.js$
-Disallow: /*.css$
-Disallow: /*.json$
 Disallow: /vite.svg
 Disallow: /_redirects
 Disallow: /.htaccess
