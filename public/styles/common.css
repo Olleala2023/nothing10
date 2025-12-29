@@ -96,8 +96,17 @@ body.home-page .hero-section .subtitle {
 .cta-buttons {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 1.5rem;
   margin: 3rem 0;
+  width: 100%;
+}
+
+.cta-buttons .btn,
+.cta-buttons .btn-primary {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -161,37 +170,16 @@ body.home-page .hero-section .subtitle {
   background: transparent;
   color: #ffffff;
   text-decoration: none;
+  border-radius: 30px;
   font-size: 1.1rem;
   font-weight: 500;
-  border-radius: 30px;
   transition: all 0.3s ease;
-  cursor: pointer;
-  min-height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn:hover::before {
-  left: 100%;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background: transparent;
-  color: #ffffff;
   transform: translateY(-2px);
   animation: borderGlow 2s ease infinite;
 }
@@ -218,21 +206,9 @@ body.home-page .hero-section .subtitle {
 .btn-primary {
   background: #ffffff;
   color: #000000;
-  font-size: 1.1rem;
-  padding: 1.2rem 2rem;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-primary::before {
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 
 .btn-primary:hover {
-  background: #f0f0f0;
-  color: #000000;
   transform: translateY(-2px);
   animation: borderGlow 2s ease infinite;
 }
@@ -1807,9 +1783,17 @@ body.home-page h1 {
 .hero-section .cta-buttons {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 1.5rem;
   margin: 3rem 0;
+  width: 100%;
+}
+
+.hero-section .cta-buttons .btn,
+.hero-section .cta-buttons .btn-primary {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
