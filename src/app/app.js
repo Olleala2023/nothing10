@@ -66,6 +66,9 @@ class NothingTimer {
     this.completionDuration = document.getElementById('completion-duration');
     this.reflectionText = document.getElementById('reflection-text');
     this.saveReflectionBtn = document.getElementById('save-reflection');
+    this.donationSection = document.querySelector('.donation-section');
+    this.shareTwitterBtn = document.getElementById('share-twitter-btn');
+    this.copyLinkBtn = document.getElementById('copy-link-btn');
     
     // Stats elements
     this.statsBtn = document.getElementById('stats-btn');
@@ -188,6 +191,19 @@ class NothingTimer {
           e.preventDefault();
           this.saveReflection();
         }
+      });
+    }
+
+    // Share buttons
+    if (this.shareTwitterBtn) {
+      this.shareTwitterBtn.addEventListener('click', () => {
+        this.shareToTwitter();
+      });
+    }
+
+    if (this.copyLinkBtn) {
+      this.copyLinkBtn.addEventListener('click', () => {
+        this.copyLink();
       });
     }
 
@@ -414,6 +430,8 @@ class NothingTimer {
     if (this.reflectionText) {
       this.reflectionText.value = '';
     }
+    // Show donation buttons with delay
+    this.showDonationButtons();
   }
 
   showWelcomeScreen() {
@@ -421,6 +439,11 @@ class NothingTimer {
     this.welcomeScreen.classList.add('active');
     this.showPhrase();
     this.updateStartButton();
+    
+    // Hide donation section when returning to welcome screen
+    if (this.donationSection) {
+      this.donationSection.classList.remove('show');
+    }
     
     // Clean up any timer phrase element that might be left over
     const timerPhrase = document.getElementById('timer-phrase');
@@ -652,6 +675,63 @@ class NothingTimer {
     // Check if fullscreen was used before
     if (localStorage.getItem('fullscreenUsed') === 'true') {
       this.fullscreenBtn.style.display = 'none';
+    }
+  }
+
+  showDonationButtons() {
+    if (this.donationSection) {
+      // Hide buttons initially
+      this.donationSection.classList.remove('show');
+      
+      // Show with fade-in animation after a short delay
+      setTimeout(() => {
+        this.donationSection.classList.add('show');
+      }, 300);
+    }
+  }
+
+  shareToTwitter() {
+    const text = encodeURIComponent("I just did nothing for 10 minutes. The world didn't collapse. Try it: nothing10.com");
+    const url = `https://twitter.com/intent/tweet?text=${text}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  async copyLink() {
+    const url = 'https://nothing10.com';
+    try {
+      // Modern API (works on HTTPS)
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+        this.showCopyFeedback();
+      } else {
+        // Fallback for HTTP (old method)
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        this.showCopyFeedback();
+      }
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      // Fallback: show the URL to user
+      alert(`Link: ${url}\n\nCopy it manually.`);
+    }
+  }
+
+  showCopyFeedback() {
+    if (this.copyLinkBtn) {
+      const originalText = this.copyLinkBtn.textContent;
+      this.copyLinkBtn.textContent = 'Copied!';
+      this.copyLinkBtn.style.opacity = '0.7';
+      setTimeout(() => {
+        this.copyLinkBtn.textContent = originalText;
+        this.copyLinkBtn.style.opacity = '1';
+      }, 2000);
     }
   }
 

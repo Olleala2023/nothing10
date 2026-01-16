@@ -35,245 +35,23 @@
     
     <title>Focus Lock Guide - 10 Minutes of Nothing</title>
     <link rel="icon" href="/icons/icon-192.png" />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: #000000;
-        color: #ffffff;
-        line-height: 1.6;
-        padding: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      .header {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-      
-      h1 {
-        font-size: clamp(2rem, 6vw, 3rem);
-        font-weight: 300;
-        margin-bottom: 1rem;
-      }
-      
-      .subtitle {
-        font-size: 1.2rem;
-        opacity: 0.8;
-        margin-bottom: 2rem;
-      }
-      
-      .back-btn {
-        display: inline-block;
-        padding: 0.8rem 2rem;
-        border: 2px solid #ffffff;
-        background: transparent;
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 30px;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        margin-bottom: 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .back-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.5s ease;
-      }
-      
-      .back-btn:hover::before {
-        left: 100%;
-      }
-      
-      .back-btn:hover {
-        background: transparent;
-        color: #ffffff;
-        animation: borderGlow 2s ease infinite;
-      }
-      
-      @keyframes borderGlow {
-        0%, 100% {
-          border-color: #ffffff;
-          box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-        }
-        25% {
-          border-color: #4a90e2;
-          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
-        }
-        50% {
-          border-color: #7b68ee;
-          box-shadow: 0 0 20px rgba(123, 104, 238, 0.6);
-        }
-        75% {
-          border-color: #4a90e2;
-          box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
-        }
-      }
-      
-      .accent-text {
-        color: #2563eb;
-        font-weight: 500;
-      }
-      
-      .section {
-        margin-bottom: 3rem;
-        padding: 2rem;
-        border: 1px solid #333;
-        border-radius: 12px;
-        background: #111;
-      }
-      
-      .section h2 {
-        font-size: 1.8rem;
-        font-weight: 400;
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      
-      .platform-icon {
-        width: 32px;
-        height: 32px;
-        background: #ffffff;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        color: #000000;
-        font-size: 0.9rem;
-      }
-      
-      .steps {
-        list-style: none;
-        counter-reset: step-counter;
-      }
-      
-      .steps li {
-        counter-increment: step-counter;
-        margin-bottom: 1.5rem;
-        padding-left: 3rem;
-        position: relative;
-      }
-      
-      .steps li::before {
-        content: counter(step-counter);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 2rem;
-        height: 2rem;
-        background: #ffffff;
-        color: #000000;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 0.9rem;
-      }
-      
-      .steps li strong {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
-      }
-      
-      .note {
-        background: #222;
-        border-left: 4px solid #ffffff;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 0 8px 8px 0;
-      }
-      
-      .note strong {
-        display: block;
-        margin-bottom: 0.5rem;
-      }
-      
-      .warning {
-        background: #2a1a00;
-        border-left: 4px solid #ff6b00;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 0 8px 8px 0;
-      }
-      
-      .warning strong {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #ff6b00;
-      }
-      
-      .footer {
-        text-align: center;
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid #333;
-      }
-      
-      .footer a {
-        color: #ffffff;
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
-      }
-      
-      .footer a:hover {
-        opacity: 1;
-      }
-      
-      @media (max-width: 480px) {
-        body {
-          padding: 1rem;
-        }
-        
-        .section {
-          padding: 1.5rem;
-        }
-        
-        .steps li {
-          padding-left: 2.5rem;
-        }
-        
-        .steps li::before {
-          width: 1.5rem;
-          height: 1.5rem;
-          font-size: 0.8rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/common.css" />
   </head>
   <body>
-    <main>
-      <div class="header">
-        <h1>Focus Lock Guide</h1>
-        <p class="subtitle">How to prevent distractions during your pause session</p>
-        <a href="/" class="back-btn">← Back to App</a>
-      </div>
+    <div class="container">
+      <main>
+        <div class="header">
+          <h1>Focus Lock Guide</h1>
+          <p class="subtitle">How to prevent distractions during your pause session</p>
+          <a href="/" class="back-btn">← Back to App</a>
+        </div>
 
       <div class="section">
       <h2>
         <div class="platform-icon">🍎</div>
         iOS - Guided Access
       </h2>
-      <p style="margin-bottom: 2rem; opacity: 0.8;">
+      <p class="section-intro">
         Perfect for parents who want to ensure their child stays focused during the session. The app includes guided breathing mode with 6-breaths-per-minute rhythm for enhanced focus.
       </p>
       
@@ -316,7 +94,7 @@
         <div class="platform-icon">🤖</div>
         Android - Screen Pinning
       </h2>
-      <p style="margin-bottom: 2rem; opacity: 0.8;">
+      <p class="section-intro">
         Android's built-in screen pinning feature to keep the app locked in place.
       </p>
       
@@ -359,7 +137,7 @@
         <div class="platform-icon">💻</div>
         Desktop Browsers
       </h2>
-      <p style="margin-bottom: 2rem; opacity: 0.8;">
+      <p class="section-intro">
         For desktop users who want to minimize distractions during their pause.
       </p>
       
@@ -396,9 +174,11 @@
         <a href="/legal/privacy">Privacy</a> | 
         <a href="/legal/terms">Terms</a>
       </p>
-      <div style="margin-top: 2rem;">
+      <div class="footer-actions">
         <a href="/" class="back-btn">← Home</a>
       </div>
-    </main>
+      </main>
+    </div>
+    <script src="/scripts/theme-toggle.js"></script>
   </body>
 </html>
