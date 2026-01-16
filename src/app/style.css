@@ -685,9 +685,37 @@ body {
   animation: borderGlow 2s ease infinite;
 }
 
+/* Make Another button quieter with gray border */
+.completion-btn {
+  border-color: #666 !important;
+}
+
 .completion-btn:hover {
-  background: transparent;
+  background: transparent !important;
   color: #ffffff;
+  border-color: #666 !important;
+  animation: none !important;
+}
+
+/* Exit button - no border, just text */
+#exit-btn {
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  padding: 0.8rem 1.5rem;
+}
+
+#exit-btn:hover {
+  color: var(--text-primary);
+  opacity: 1;
+  transform: none !important;
+  animation: none !important;
+  background: transparent !important;
+}
+
+#exit-btn::before {
+  display: none !important;
 }
 
 /* Donation Section */
@@ -715,6 +743,7 @@ body {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   animation: fadeIn 0.5s ease 0.2s both;
 }
@@ -767,6 +796,35 @@ body {
   transform: translateY(0);
 }
 
+/* Copy Link button - text only, no border */
+.copy-link-btn {
+  padding: 0.5rem 1rem;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  min-height: auto;
+}
+
+.copy-link-btn:hover {
+  color: var(--text-primary);
+  opacity: 1;
+  transform: none !important;
+  animation: none !important;
+  background: transparent !important;
+}
+
+.copy-link-btn::before {
+  display: none !important;
+}
+
 /* Mobile adaptation for donation buttons */
 @media (max-width: 480px) {
   .donation-buttons-container {
@@ -778,6 +836,11 @@ body {
   .share-btn {
     width: 100%;
     min-width: auto;
+  }
+  
+  .copy-link-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

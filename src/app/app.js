@@ -424,7 +424,7 @@ class NothingTimer {
     this.hideAllScreens();
     this.completionScreen.classList.add('active');
     if (this.completionDuration) {
-      this.completionDuration.textContent = this.currentDuration;
+      this.completionDuration.textContent = ` ${this.currentDuration} `;
     }
     // Clear reflection textarea
     if (this.reflectionText) {
