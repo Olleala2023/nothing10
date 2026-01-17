@@ -409,6 +409,18 @@ class NothingTimer {
   completeTimer() {
     this.isRunning = false;
     clearInterval(this.intervalId);
+    
+    // Track timer completion in Google Analytics
+    if (typeof gtag === 'function') {
+      const eventName = `timer_completed_${this.currentDuration}m`;
+      gtag('event', eventName, {
+        'app_name': 'Nothing10',
+        'status': 'success',
+        'duration_minutes': this.currentDuration
+      });
+      console.log(`GA Event sent: ${eventName}`); // Для отладки
+    }
+    
     this.updateStats();
     
     // Clean up timer phrase element
