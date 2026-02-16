@@ -42,9 +42,6 @@
       html.removeAttribute('data-theme');
     }
     saveTheme(theme);
-    // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/00b98d01-638d-46a8-ac1d-6747997bdb8c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'theme-toggle.js:applyTheme',message:'Theme applied',data:{theme:theme,hasDataTheme:html.hasAttribute('data-theme'),dataThemeValue:html.getAttribute('data-theme')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
   }
 
   /**
@@ -55,28 +52,6 @@
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
     updateToggleButton(newTheme);
-    // #region agent log
-    // Log immediately after toggle
-    setTimeout(() => {
-      const html = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      if (btn) {
-        const computedStyle = window.getComputedStyle(btn);
-        fetch('http://127.0.0.1:7243/ingest/00b98d01-638d-46a8-ac1d-6747997bdb8c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'theme-toggle.js:toggleTheme',message:'Button styles immediately after toggle',data:{newTheme:newTheme,htmlDataTheme:html.getAttribute('data-theme'),btnBorderColor:computedStyle.borderColor,btnBackgroundColor:computedStyle.backgroundColor,btnColor:computedStyle.color},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
-      }
-    }, 50);
-    // Log after longer delay
-    setTimeout(() => {
-      const html = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      if (btn) {
-        const computedStyle = window.getComputedStyle(btn);
-        const svg = btn.querySelector('svg');
-        const svgComputedStyle = svg ? window.getComputedStyle(svg) : null;
-        fetch('http://127.0.0.1:7243/ingest/00b98d01-638d-46a8-ac1d-6747997bdb8c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'theme-toggle.js:toggleTheme',message:'Button styles after delay',data:{newTheme:newTheme,htmlDataTheme:html.getAttribute('data-theme'),btnBorderColor:computedStyle.borderColor,btnBackgroundColor:computedStyle.backgroundColor,btnColor:computedStyle.color,svgStroke:svgComputedStyle?.stroke,svgColor:svgComputedStyle?.color},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'E'})}).catch(()=>{});
-      }
-    }, 500);
-    // #endregion
   }
 
   /**
@@ -159,19 +134,6 @@
       toggleBtn = createToggleButton();
     }
     updateToggleButton(currentTheme);
-    
-    // #region agent log
-    setTimeout(() => {
-      const html = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      if (btn) {
-        const computedStyle = window.getComputedStyle(btn);
-        const svg = btn.querySelector('svg');
-        const svgComputedStyle = svg ? window.getComputedStyle(svg) : null;
-        fetch('http://127.0.0.1:7243/ingest/00b98d01-638d-46a8-ac1d-6747997bdb8c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'theme-toggle.js:initTheme',message:'Button styles after init',data:{currentTheme:currentTheme,htmlDataTheme:html.getAttribute('data-theme'),btnBorderColor:computedStyle.borderColor,btnBackgroundColor:computedStyle.backgroundColor,btnColor:computedStyle.color,svgStroke:svgComputedStyle?.stroke,svgColor:svgComputedStyle?.color},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B,C,D'})}).catch(()=>{});
-      }
-    }, 100);
-    // #endregion
   }
 
   // Initialize when DOM is ready

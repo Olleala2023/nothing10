@@ -84,7 +84,7 @@
         <button id="generate-btn" class="btn btn-primary">Generate a gentle prompt</button>
       </div>
       
-      <div class="result-block" id="result-block" aria-live="polite" style="display: none;">
+      <div class="result-block hidden" id="result-block" aria-live="polite">
         <div class="result-item">
           <div class="result-label">One thought:</div>
           <div class="result-text" id="thought-text"></div>
@@ -106,12 +106,12 @@
       <div class="secondary-section">
         <div class="history-section">
           <button class="btn-toggle" id="history-toggle">History (10)</button>
-          <div id="history-dropdown" class="dropdown" style="display: none;"></div>
+          <div id="history-dropdown" class="dropdown hidden"></div>
         </div>
         
         <div class="add-custom-section">
           <button class="btn-toggle" id="add-custom-toggle">Add your own</button>
-          <div id="add-custom-form" class="custom-form" style="display: none;">
+          <div id="add-custom-form" class="custom-form hidden">
             <input type="text" id="custom-thought" placeholder="Thought..." />
             <input type="text" id="custom-action" placeholder="Action..." />
             <select id="custom-tone-select" class="select-small">

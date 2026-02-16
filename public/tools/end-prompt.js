@@ -131,10 +131,8 @@ function displayPair(pair) {
   thoughtText.textContent = pair.thought;
   actionText.textContent = pair.action;
   
-  // Show the block - remove inline style to reveal it
-  resultBlock.removeAttribute('style');
-  // Ensure it's visible
-  resultBlock.style.display = 'block';
+  // Show the result block
+  resultBlock.classList.remove('hidden');
   
   // Scroll into view if needed
   resultBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -210,7 +208,7 @@ function displayHistory() {
   
   if (storage.history.length === 0) {
     dropdown.innerHTML = '<div class="dropdown-item">No history yet</div>';
-    dropdown.style.display = 'block';
+    dropdown.classList.remove('hidden');
     return;
   }
   
@@ -220,7 +218,7 @@ function displayHistory() {
     return `<div class="dropdown-item" data-id="${item.id}">${pair.thought}</div>`;
   }).join('');
   
-  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  dropdown.classList.toggle('hidden');
   
   // Add click handlers
   dropdown.querySelectorAll('.dropdown-item').forEach(item => {
@@ -229,7 +227,7 @@ function displayHistory() {
       const pair = [...data.items, ...storage.custom].find(p => p.id === id);
       if (pair) {
         displayPair(pair);
-        dropdown.style.display = 'none';
+        dropdown.classList.add('hidden');
       }
     });
   });
@@ -238,7 +236,7 @@ function displayHistory() {
 // Add custom
 function displayAddCustom() {
   const form = document.getElementById('add-custom-form');
-  form.style.display = form.style.display === 'block' ? 'none' : 'block';
+  form.classList.toggle('hidden');
 }
 
 function saveCustom() {
@@ -266,7 +264,7 @@ function saveCustom() {
   
   document.getElementById('custom-thought').value = '';
   document.getElementById('custom-action').value = '';
-  document.getElementById('add-custom-form').style.display = 'none';
+  document.getElementById('add-custom-form').classList.add('hidden');
   
   showToast('Saved locally');
 }

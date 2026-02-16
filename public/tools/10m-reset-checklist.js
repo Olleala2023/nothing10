@@ -100,7 +100,7 @@ function updateProgress() {
     progressText.textContent = `${completed} of ${total} completed`;
   }
   if (progressContainer && completed > 0) {
-    progressContainer.style.display = 'block';
+    progressContainer.classList.remove('hidden');
   }
 }
 

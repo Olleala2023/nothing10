@@ -1,22 +1,21 @@
-// Micro-Distraction Audit Checklist
+// Focus Switch — Context Reset Checklist
 // Local-only, privacy-first checklist functionality
 
 const checklistData = {
-  slug: 'distraction-audit',
-  title: 'Micro-Distraction Audit — Quick Checklist',
-  intro: 'A one-minute sweep to reduce small frictions before your pause. Tick off what helps; skip the rest.',
-  duration: '60 seconds',
+  slug: 'focus-switch',
+  title: 'Focus Switch — Context Reset Checklist',
+  intro: 'A short bridge between tasks to lower attention residue.',
+  duration: '~3 minutes',
   steps: [
-    { text: 'Mute OS notifications for 15–60 minutes.', required: false },
-    { text: 'Close one tab/app you won\'t use now.', required: false },
-    { text: 'Phone → Do Not Disturb / silent.', required: false },
-    { text: 'Clear one object on your desk.', required: false },
-    { text: 'Open the 10-Minute Timer.', required: true },
-    { text: 'Optional: open Breathing Pacer (6/min).', required: false },
-    { text: 'Choose sound: soft chime or no sound.', required: false },
-    { text: 'Pick where you\'ll sit/stand (no scrolling).', required: false },
-    { text: 'Decide your post-pause tiny step (one line).', required: false },
-    { text: 'Breathe out once—then start.', required: true }
+    { text: 'Close one tab/app from the previous task.', required: true },
+    { text: 'Write a one-line intent for the next task.', required: true },
+    { text: 'Set a 15–25 min focus block (timer).', required: false },
+    { text: 'Open only the needed doc/file.', required: false },
+    { text: 'Silence chat for the block.', required: false },
+    { text: 'Optional: 1 minute of breathing.', required: false },
+    { text: 'Remove one visual distraction (desk/screen).', required: false },
+    { text: 'Decide the first 2-minute step.', required: false },
+    { text: 'Begin; adjust later, not now.', required: false }
   ]
 };
 
@@ -45,7 +44,7 @@ function saveState() {
     const data = {
       checked: checkedState,
       completed: checkedState.every(b => b) ? new Date().toISOString() : null,
-      timesUsed: 1 // Simplified for now
+      timesUsed: 1
     };
     localStorage.setItem(storageKey, JSON.stringify(data));
   } catch (error) {
@@ -57,7 +56,7 @@ function saveState() {
 function initChecklist() {
   const container = document.getElementById('checklist-steps');
   container.innerHTML = '';
-  
+
   checklistData.steps.forEach((step, index) => {
     const stepItem = document.createElement('div');
     stepItem.className = 'checklist-item';
@@ -69,7 +68,7 @@ function initChecklist() {
     `;
     container.appendChild(stepItem);
   });
-  
+
   // Add event listeners
   document.querySelectorAll('#checklist-steps input[type="checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('change', (e) => {
@@ -79,7 +78,7 @@ function initChecklist() {
       updateProgress();
     });
   });
-  
+
   updateProgress();
 }
 
@@ -88,11 +87,11 @@ function updateProgress() {
   const completed = checkedState.filter(b => b).length;
   const total = checkedState.length;
   const percentage = (completed / total) * 100;
-  
+
   const progressFill = document.getElementById('progress-fill');
   const progressText = document.getElementById('progress-text');
   const progressContainer = document.getElementById('checklist-progress');
-  
+
   if (progressFill) {
     progressFill.style.width = `${percentage}%`;
   }
@@ -111,8 +110,8 @@ function copyAsText() {
     const mark = checkedState[i] ? '☑' : '☐';
     output += `${mark} ${step.text}\n`;
   });
-  output += `\nGenerated from: https://nothing10.com/tools/${checklistData.slug}.html`;
-  
+  output += `\nGenerated from: https://nothing10.com/tools/${checklistData.slug}`;
+
   copyToClipboard(output, 'Copied as text');
 }
 
@@ -123,15 +122,15 @@ function copyAsMarkdown() {
     const mark = checkedState[i] ? '[x]' : '[ ]';
     output += `- ${mark} ${step.text}\n`;
   });
-  output += `\n*Source: [nothing10.com](https://nothing10.com/tools/${checklistData.slug}.html)*`;
-  
+  output += `\n*Source: [nothing10.com](https://nothing10.com/tools/${checklistData.slug})*`;
+
   copyToClipboard(output, 'Copied as Markdown');
 }
 
 // Share link
 async function shareLink() {
   const url = window.location.href;
-  
+
   if (navigator.share) {
     try {
       await navigator.share({
@@ -176,11 +175,11 @@ function showToast(message) {
   toast.className = 'toast';
   toast.textContent = message;
   document.body.appendChild(toast);
-  
+
   setTimeout(() => {
     toast.classList.add('show');
   }, 10);
-  
+
   setTimeout(() => {
     toast.classList.remove('show');
     setTimeout(() => toast.remove(), 300);
@@ -190,7 +189,7 @@ function showToast(message) {
 // Hotkeys
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') return;
-  
+
   if (e.key === 'c' || e.key === 'C') {
     e.preventDefault();
     copyAsText();
@@ -225,4 +224,3 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
-
