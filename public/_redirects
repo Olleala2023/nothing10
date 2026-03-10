@@ -3,10 +3,8 @@
 # ========================================
 # SPA routing for /app (КРИТИЧНО - обязательно для работы PWA)
 # ========================================
-# Redirect /app without trailing slash to /app/ (canonical URL)
-/app  /app/  301
-
-# All /app/* routes serve the SPA
+# Serve /app and /app/ directly (no redirect chain — important for Google indexing)
+/app  /app/index.html  200
 /app/  /app/index.html  200
 /app/*  /app/index.html  200
 
@@ -16,7 +14,6 @@
 # The non-.html versions will be canonical URLs.
 # ========================================
 
-# # Legacy redirects
-# # Redirect old why-10-minutes.html to new research location
-# /why-10-minutes.html  /research/why-10-minutes.html  301
+# Legacy redirects (non-.html versions, since Cloudflare strips .html first)
+/why-10-minutes  /research/why-10-minutes  301
 

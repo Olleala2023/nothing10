@@ -422,7 +422,15 @@ class NothingTimer {
     }
     
     this.updateStats();
-    
+
+    // Play completion sound
+    try {
+      const audio = new Audio('/sounds/timer-complete.mp3');
+      audio.play();
+    } catch (e) {
+      // Audio not available
+    }
+
     // Clean up timer phrase element
     const timerPhrase = document.getElementById('timer-phrase');
     if (timerPhrase) {

@@ -103,27 +103,13 @@
     function completeTimer() {
       clearInterval(intervalId);
       
-      // Play soft sound if enabled
+      // Play sound if enabled
       if (soundEnabled) {
         try {
-          // Create a soft beep sound using Web Audio API
-          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-          const oscillator = audioContext.createOscillator();
-          const gainNode = audioContext.createGain();
-          
-          oscillator.connect(gainNode);
-          gainNode.connect(audioContext.destination);
-          
-          oscillator.frequency.value = 800; // Nice soft frequency
-          oscillator.type = 'sine';
-          
-          gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-          
-          oscillator.start(audioContext.currentTime);
-          oscillator.stop(audioContext.currentTime + 0.5);
+          const audio = new Audio('/sounds/timer-complete.mp3');
+          audio.play();
         } catch (e) {
-          // Web Audio API not available
+          // Audio not available
         }
       }
       
@@ -151,6 +137,32 @@
     }
   </script>
   
+  <div class="container">
+    <section class="content">
+      <h2>Why a dedicated 10-minute timer?</h2>
+      <p>Most phone timers are surrounded by notifications, recent apps, and other distractions. Opening a general timer is often the last step before checking email "just quickly." This timer is designed to remove that friction: full-screen, black background, nothing to look at except the countdown.</p>
+
+      <h2>What makes this different</h2>
+      <ul>
+        <li><strong>Fullscreen by default:</strong> When you start, the interface goes fullscreen and all browser chrome disappears. The only thing on screen is the time remaining.</li>
+        <li><strong>No features:</strong> No laps, no intervals, no history, no settings. One task: sit quietly for 10 minutes.</li>
+        <li><strong>Optional sound:</strong> A single soft chime when the timer ends. You can disable it if you're in a shared space.</li>
+        <li><strong>Offline:</strong> Works without an internet connection. No account required.</li>
+      </ul>
+
+      <h2>How to use it</h2>
+      <ol>
+        <li>Optionally follow the <a href="/tools/10m-reset-checklist">10-Minute Reset Checklist</a> to settle in.</li>
+        <li>Press <strong>Start a 10-minute pause</strong>.</li>
+        <li>Put the screen face-down or use <a href="/focus-lock/">Focus Lock</a> on mobile.</li>
+        <li>When the chime sounds, open the <a href="/tools/end-prompt">End-Prompt Generator</a> before returning to work.</li>
+      </ol>
+
+      <h2>Why 10 minutes?</h2>
+      <p>Research on micro-breaks shows that around 10 minutes is the practical upper bound that consistently improves well-being (vigor up, fatigue down) without disrupting a workday. It's long enough for the nervous system to shift, and short enough that people actually take it. <a href="/research/why-10-minutes">Read the evidence →</a></p>
+    </section>
+  </div>
+
   <footer class="footer">
     <div class="footer-links">
       <a href="/">Home</a>
