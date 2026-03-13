@@ -253,6 +253,7 @@ body {
 .duration-btn.active:hover,
 .mode-btn.active:hover {
   background: var(--bg-secondary);
+  color: var(--text-primary);
   box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2), 0 0 12px rgba(123, 104, 238, 0.15);
   animation: borderGlowLight 2s ease infinite;
 }
@@ -346,6 +347,7 @@ body {
 
 .custom-duration button:hover {
   background: var(--bg-secondary);
+  color: var(--text-primary);
   box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2), 0 0 12px rgba(123, 104, 238, 0.15);
   animation: borderGlowLight 2s ease infinite;
 }
@@ -386,6 +388,7 @@ body {
 
 .start-btn:hover {
   background: var(--bg-secondary);
+  color: var(--text-primary);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(74, 144, 226, 0.25), 0 0 20px rgba(123, 104, 238, 0.15);
   animation: borderGlowLight 2s ease infinite;
@@ -1107,7 +1110,7 @@ body {
 .theme-toggle {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   width: 48px;
   height: 48px;
   border: 2px solid var(--border-primary);
