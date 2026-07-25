@@ -74,7 +74,12 @@ Perfect for children who need help staying focused:
 - **No data collection**: Everything stays on your device
 - **No tracking**: No analytics or third-party services
 - **Local storage only**: Statistics stored in browser
-- **Open source**: Code is transparent and auditable
+
+⚠️ **Known inconsistency.** The claims above match the shipped code — no analytics script is
+loaded on any page. However [Privacy Policy](./public/legal/privacy.html) §3 states that Google
+Analytics *is* used, and [Terms of Service](./public/legal/terms.html) §7 states no data is
+processed at all. These three documents contradict each other and need to be reconciled — this
+is an open decision, tracked as entry **0003** in [docs/DECISIONS.md](./docs/DECISIONS.md).
 
 ## 🛠️ Technical Details
 
@@ -152,17 +157,44 @@ nothing10/
 
 See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed Cloudflare Pages deployment instructions.
 
+## 📚 Development Documentation
+
+Project rules live in the repository and are the single source of truth for how the code is
+written. Start with [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+| Document | Scope |
+|---|---|
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Workflow, change sizing, definition of done, how to change the rules |
+| [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | Layers, dependency rules, build and deploy pipeline, localStorage registry |
+| [docs/CODE_STYLE.md](./docs/CODE_STYLE.md) | JavaScript, CSS and HTML conventions |
+| [docs/TESTING.md](./docs/TESTING.md) | Testing policy — test-first for large changes |
+| [docs/DECISIONS.md](./docs/DECISIONS.md) | Decision log: why things are the way they are |
+| [AUDIT_2026-07-25.md](./AUDIT_2026-07-25.md) | Full audit — 38 findings, prioritised |
+
+Note: this README describes the product for an outside reader. It is **not** the rules —
+where the two disagree, the documents above win.
+
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open Pull Request
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process: branch naming, Conventional
+Commits, when tests are required, and the definition of done.
+
+Short version:
+
+1. Create a branch — `<type>/<short-description>`, never commit to `main` directly
+2. Follow [docs/CODE_STYLE.md](./docs/CODE_STYLE.md)
+3. Add tests according to [docs/TESTING.md](./docs/TESTING.md) — required for bug fixes
+4. Open a Pull Request describing what changed, why, and how it was verified
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+⚠️ **Not settled yet.** There is currently no `LICENSE` file in this repository, which means
+the code is "all rights reserved" by default. At the same time
+[Terms of Service](./public/legal/terms.html) §8 forbids copying and redistribution.
+
+Whether this project becomes MIT-licensed, stays proprietary, or splits code and content is
+an open decision — tracked as entry **0004** in [docs/DECISIONS.md](./docs/DECISIONS.md).
+Until it is resolved, do not rely on any particular license for this code.
 
 ## 📞 Support
 

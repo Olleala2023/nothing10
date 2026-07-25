@@ -1,10 +1,23 @@
 # Cloudflare Analytics Setup Guide
 
+**Last reviewed:** 2026-07-25 · **Next review:** 2027-01-25
+
 This guide explains how to set up privacy-friendly analytics for "10 Minutes of Nothing" using Cloudflare Web Analytics, while respecting the app's commitment to user privacy.
+
+> ⚠️ **This guide is partially out of date, and that matters.** It was written when the Privacy
+> Policy said "no analytics". Since then, `public/legal/privacy.html` §3 was changed to declare
+> that Google Analytics *is* used with cookies — which directly contradicts the "Analytics to
+> Avoid" section below, as well as the README and the Terms of Service. Meanwhile no analytics
+> script is actually loaded on any page.
+>
+> Reconciling this is an open decision: entry **0003** in [docs/DECISIONS.md](./docs/DECISIONS.md).
+> **Do not add any analytics or tracking script until it is resolved.** The recommendation in
+> this guide (Cloudflare, no cookies) remains the suggested path.
 
 ## ⚠️ Important Privacy Considerations
 
-**Before enabling any analytics, review your Privacy Policy.** Your current Privacy Policy states:
+**Before enabling any analytics, review your Privacy Policy.** The Privacy Policy *originally*
+stated — and the README still states:
 - "No tracking. No accounts."
 - "We do not collect, store, or transmit any personal information"
 - "No analytics or tracking data"

@@ -1,5 +1,11 @@
 # Nothing10.com - Cloudflare Pages Deployment Guide
 
+**Last reviewed:** 2026-07-25 · **Next review:** 2027-01-25
+
+Scope: infrastructure only — Cloudflare account, domain, DNS, email. Code rules live in
+[CONTRIBUTING.md](./CONTRIBUTING.md); repository structure in
+[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+
 ## Overview
 This guide will help you deploy the "10 Minutes of Nothing" PWA to Cloudflare Pages with custom domain `nothing10.com`.
 
@@ -12,18 +18,16 @@ This guide will help you deploy the "10 Minutes of Nothing" PWA to Cloudflare Pa
 
 ### 1.1 Add Domain to Cloudflare
 1. Log into [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. **Найдите кнопку добавления сайта** (может быть в разных местах):
-   - В правом верхнем углу: "Add a Site" / "Add Site"
-   - На главной странице: большая кнопка "Add a Site"
-   - В левом меню: "Sites" → "Add Site"
-   - На дашборде: "Get started" / "Connect a Site"
+2. **Find the "add site" button** — its placement varies between dashboard versions:
+   - Top right corner: "Add a Site" / "Add Site"
+   - Home screen: large "Add a Site" button
+   - Left menu: "Sites" → "Add Site"
+   - Dashboard: "Get started" / "Connect a Site"
 3. Enter `nothing10.com`
 4. Choose "Free" plan
 5. Cloudflare will scan your DNS records
 
-**Если не можете найти кнопку:**
-- Попробуйте перейти напрямую: `https://dash.cloudflare.com/add-site`
-- Или найдите в меню "Sites" → "Add Site"
+**If you cannot find the button:** go directly to `https://dash.cloudflare.com/add-site`
 
 ### 1.2 Update Nameservers
 1. Go to your domain registrar (where you bought nothing10.com)
@@ -35,17 +39,14 @@ This guide will help you deploy the "10 Minutes of Nothing" PWA to Cloudflare Pa
 ## Step 2: Deploy to Cloudflare Pages
 
 ### 2.1 Connect Repository
-1. In Cloudflare Dashboard, go to **Pages** (в левом меню)
-2. Click "Create a project" или "Create project"
-3. Choose "Connect to Git" или "Connect Git repository"
+1. In Cloudflare Dashboard, go to **Pages** (left menu)
+2. Click "Create a project" or "Create project"
+3. Choose "Connect to Git" or "Connect Git repository"
 4. Select GitHub and authorize Cloudflare
 5. Choose repository: `Olleala2023/nothing10`
 
-**Альтернативные варианты:**
-- "Create project"
-- "New project" 
-- "Deploy a site"
-- "Get started"
+**Button label varies by dashboard version:** "Create project", "New project",
+"Deploy a site", or "Get started".
 
 ### 2.2 Configure Build Settings
 ```
@@ -86,11 +87,31 @@ Cloudflare will automatically create:
 ## Step 4: Verify Deployment
 
 ### 4.1 Test URLs
+
+Cloudflare Pages issues a 308 redirect from `.html` to the extensionless URL and this cannot be
+disabled via `_redirects`. The extensionless forms below are the canonical ones — always link to
+these, never to the `.html` variants.
+
 - **Landing page**: `https://nothing10.com/`
 - **PWA app**: `https://nothing10.com/app/`
-- **Focus Lock guide**: `https://nothing10.com/focus-lock/index.html`
-- **Privacy Policy**: `https://nothing10.com/legal/privacy.html`
-- **Terms of Service**: `https://nothing10.com/legal/terms.html`
+- **Focus Lock guide**: `https://nothing10.com/focus-lock/`
+- **Privacy Policy**: `https://nothing10.com/legal/privacy`
+- **Terms of Service**: `https://nothing10.com/legal/terms`
+
+Also verify that `https://nothing10.com/src/app/` does **not** serve the app. The build
+currently leaks a duplicate copy there — see `AUDIT_2026-07-25.md`, finding 2.3.
+
+### 4.1a Security Headers
+
+`public/.htaccess` is Apache configuration and **Cloudflare Pages does not read it**, so the
+headers declared in it are not applied in production. A `public/_headers` file is required
+instead. Verify with:
+
+```bash
+curl -sI https://nothing10.com/ | grep -iE 'content-security-policy|x-frame-options|strict-transport'
+```
+
+Empty output means no headers are set. See `AUDIT_2026-07-25.md`, finding 1.5.
 
 ### 4.2 PWA Testing
 1. Open `https://nothing10.com/app/` on mobile
@@ -122,7 +143,9 @@ Cloudflare will automatically create:
 ### 6.1 Analytics (Optional)
 - Cloudflare provides DNS-level analytics (no tracking, privacy-friendly)
 - For detailed analytics setup, see [ANALYTICS_GUIDE.md](./ANALYTICS_GUIDE.md)
-- Current app is privacy-focused: no tracking, no analytics scripts
+- No analytics script is currently loaded on any page. Note that the Privacy Policy says
+  otherwise — reconciling this is an open decision, entry **0003** in
+  [docs/DECISIONS.md](./docs/DECISIONS.md). Do not add analytics before it is resolved.
 
 ### 6.2 Updates
 1. Make changes locally
@@ -141,7 +164,9 @@ Cloudflare will automatically create:
 #### Build Fails
 - Check build command: `npm run build`
 - Verify output directory: `dist`
-- Check for TypeScript errors
+- Note: there is no type-checking step in this project. `tsconfig.json` covers only unused
+  template files, and the application itself is plain JavaScript — a build failure will not
+  be a TypeScript error. See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 #### PWA Not Installable
 - Verify manifest.webmanifest is accessible
@@ -163,20 +188,28 @@ Cloudflare will automatically create:
 - GitHub Issues: [github.com/Olleala2023/nothing10/issues](https://github.com/Olleala2023/nothing10/issues)
 
 ## Project Structure
+
+⚠️ This section previously pointed at `app/`, which is a **stale build artifact**, not the
+source. The authoritative structure and dependency rules live in
+[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) — refer to that document, not to a copy here.
+
 ```
 nothing10/
-├── index.html              # Landing page
-├── app/                    # PWA application
+├── index.html              # Landing page — Vite entry point #1
+├── src/app/                # ★ PWA source of truth — Vite entry point #2
 │   ├── index.html
 │   ├── app.js
 │   └── style.css
-├── public/                 # Static assets
-│   ├── app/               # PWA files
-│   ├── icons/             # PWA icons
-│   ├── legal/             # Legal pages
-│   └── focus-lock/        # Focus lock guide
-├── scripts/               # Build scripts
-└── dist/                  # Production build
+├── public/                 # Copied into dist/ as-is
+│   ├── app/               # manifest.webmanifest, sw.js
+│   ├── icons/, sounds/, data/
+│   ├── styles/, scripts/  # Shared CSS and theme toggle
+│   ├── tools/, research/, modes/, focus-lock/, legal/
+│   ├── robots.txt, sitemap.xml, _redirects
+│   └── .htaccess          # ✗ Apache format — Cloudflare Pages ignores this
+├── scripts/               # Build scripts (Node)
+├── app/                   # ✗ Stale artifact — do not edit
+└── dist/                  # Production build (git-ignored)
 ```
 
 ## Success Checklist
